@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 //testing git nak push pull merge
-
 // comment testing for git
 void main() {
   runApp(const MyApp());
