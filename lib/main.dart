@@ -1,4 +1,6 @@
-import 'package:ez_edu/templates/templateMenu.dart';
+
+import 'package:ezedu/screens/student/student_menu.dart';
+import 'package:ezedu/templates/templateMenu.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
         primaryColor: primaryColor,
       ),
       home: templateMenu(),
+      //home: StudentMenu(), // TODO remove comment to see student part 
     );
   }
 }
