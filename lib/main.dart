@@ -1,4 +1,5 @@
-import 'package:ez_edu/templates/templateMenu.dart';
+//import 'package:ez_edu/templates/templateMenu.dart';
+import 'package:ezedu/templates/templateMenu.dart';
 import 'package:flutter/material.dart';
 
 void main() {

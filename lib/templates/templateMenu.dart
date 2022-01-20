@@ -1,5 +1,7 @@
-import 'package:ez_edu/templates/templateCallTabBody.dart';
-import 'package:ez_edu/templates/templateList.dart';
+import 'package:ezedu/templates/templateCallTabBody.dart';
+import 'package:ezedu/templates/templateList.dart';
+//import 'package:templates/templateCallTabBody.dart';
+//import 'package:templates/templateList.dart';
 import 'package:flutter/material.dart';
 
 void main() {
