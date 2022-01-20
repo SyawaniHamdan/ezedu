@@ -1,5 +1,6 @@
 //import 'package:ez_edu/templates/templateMenu.dart';
 import 'package:ezedu/screens/home/main/widgets/home_main_screen.dart';
+import 'package:ezedu/screens/tutor/login/widgets/tutor_login_main_screen.dart';
 import 'package:ezedu/templates/templateMenu.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primaryColor,
       ),
-      home: HomeMainScreen(),
+      home: TutorLoginMainScreen(),
     );
   }
 }
