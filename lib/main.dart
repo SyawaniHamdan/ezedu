@@ -2,6 +2,8 @@
 import 'package:ezedu/templates/templateMenu.dart';
 import 'package:flutter/material.dart';
 
+
+
 void main() {
   runApp(MyApp());
 }
