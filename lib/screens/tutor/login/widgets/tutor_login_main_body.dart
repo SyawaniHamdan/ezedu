@@ -14,7 +14,7 @@ class TutorLoginMainBody extends StatelessWidget {
                 "LOGIN",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Color(0XEEB71C1C),
+                  color: Color(0XFF006064),
                   fontSize: 36
                 ),
                 textAlign: TextAlign.left,
@@ -66,7 +66,7 @@ class TutorLoginMainBody extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                        primary: Colors.blueGrey[900],//change background color of button
+                        primary: Colors.cyan[800],//change background color of button
                         onPrimary: Colors.white,//change text color of button
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),

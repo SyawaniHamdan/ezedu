@@ -11,7 +11,7 @@ class _HomeMainFloat extends State<HomeMainFloat> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(50, 50, 15, 10),
+      padding: const EdgeInsets.fromLTRB(50, 80, 15, 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -19,13 +19,13 @@ class _HomeMainFloat extends State<HomeMainFloat> {
           ElevatedButton(
           style: ElevatedButton.styleFrom(
             onPrimary : Colors.teal,
-            primary: Colors.blueGrey[900],
+            primary: Colors.cyan[100],
             minimumSize: Size.fromHeight(50),
             shape: StadiumBorder(),
           ),
           child: FittedBox(
             child: Text('Tutor',
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 20, color: Colors.cyan[900]),
             ),
           ),
           onPressed: (){},
@@ -34,14 +34,14 @@ class _HomeMainFloat extends State<HomeMainFloat> {
           ElevatedButton(
           style: ElevatedButton.styleFrom(
             onPrimary : Colors.teal,
-            primary: Colors.blueGrey[900],
+            primary: Colors.cyan[100],
             minimumSize: Size.fromHeight(50),
             shape: StadiumBorder(),
             
           ),
           child: FittedBox(
             child: Text('Student',
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 20, color: Colors.cyan[900]),
             ),
           ),
           onPressed: (){},
@@ -50,13 +50,13 @@ class _HomeMainFloat extends State<HomeMainFloat> {
           ElevatedButton(
           style: ElevatedButton.styleFrom(
             onPrimary : Colors.teal,
-            primary: Colors.blueGrey[900],
+            primary: Colors.cyan[100],
             minimumSize: Size.fromHeight(50),
             shape: StadiumBorder(),
           ),
           child: FittedBox(
             child: Text('Guest',
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 20, color: Colors.cyan[900]),
             ),
           ),
           onPressed: (){},
