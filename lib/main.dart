@@ -1,6 +1,5 @@
 //import 'package:ez_edu/templates/templateMenu.dart';
 import 'package:ezedu/screens/home/main/widgets/home_main_screen.dart';
-import 'package:ezedu/screens/student/student_menu.dart';
 import 'package:ezedu/screens/tutor/login/widgets/tutor_login_main_screen.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
 import 'package:ezedu/screens/tutor/profile/widgets/tutor_profile_main_screen.dart';

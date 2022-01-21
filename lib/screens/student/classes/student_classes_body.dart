@@ -1,11 +1,15 @@
+import 'package:ezedu/screens/student/classes/student_classes_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:stacked/stacked.dart';
 
-void main() {
-  runApp(StudentEnrolled());
+class StudentClassesBody extends StatefulWidget {
+  @override
+  State<StudentClassesBody> createState() => _StudentClassesBody();
 }
 
-class StudentEnrolled extends StatelessWidget {
+class _StudentClassesBody extends State<StudentClassesBody> {
+
   // mock data
   final subject = ['Mathematics', 'Additional Mathematics', 'Biology'];
   final tutor = ['Lisa Manoban', 'Jennie Jane', 'Rose Khan'];
@@ -20,10 +24,11 @@ class StudentEnrolled extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            backgroundColor: Colors.lightBlue[50],
+    return ViewModelBuilder.reactive(
+        disposeViewModel: false,
+        viewModelBuilder: () => StudentClassesViewModel(),
+        builder: (context, model, child) => Scaffold(
+          backgroundColor: Colors.lightBlue[50],
             body: Column(
               children: [
                 Align(
@@ -95,6 +100,7 @@ class StudentEnrolled extends StatelessWidget {
                       }),
                 ),
               ],
-            )));
+            )
+        ));
   }
 }

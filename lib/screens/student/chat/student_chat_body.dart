@@ -1,20 +1,28 @@
-import 'package:flutter/material.dart';
 
-void main() {
-  runApp(StudentChat());
+import 'package:ezedu/screens/student/chat/student_chat_viewmodel.dart';
+import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+
+class StudentChatBody extends StatefulWidget {
+  @override
+  State<StudentChatBody> createState() => _StudentChatBody();
 }
 
-class StudentChat extends StatelessWidget {
+class _StudentChatBody extends State<StudentChatBody> {
+
+  // mock data
+   final chat = ['Lisa manoban', 'Jennie Jane', 'Rose Khan', 'Jisoo Hae'];
+
   static const primaryColor = Color.fromARGB(255, 202, 201, 201);
   double padding = 10;
   @override
   Widget build(BuildContext context) {
-    final chat = ['Lisa manoban', 'Jennie Jane', 'Rose Khan', 'Jisoo Hae'];
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            backgroundColor: Colors.lightBlue[50],
-            body: Column(
+    return ViewModelBuilder<StudentChatViewModel>.reactive(
+        disposeViewModel: false,
+        viewModelBuilder: () => StudentChatViewModel(),
+        builder: (context, model, child) => Scaffold(
+          backgroundColor: Colors.lightBlue[50],
+          body: Column(
               children: [
                 Align(
                   alignment: Alignment.centerLeft,
@@ -62,6 +70,7 @@ class StudentChat extends StatelessWidget {
                   ),
                 ),
               ],
-            )));
+            ),
+        ));
   }
 }
