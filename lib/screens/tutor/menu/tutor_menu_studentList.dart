@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/classes/student.dart';
+
 void main() {
-  runApp(templateList());
+  runApp(tutorStudentList(
+    data: [],
+  ));
 }
 
-class templateList extends StatelessWidget {
+class tutorStudentList extends StatelessWidget {
+  tutorStudentList({required this.data});
+  final List<Student> data;
+
   static const primaryColor = Color.fromARGB(255, 202, 201, 201);
   double padding = 10;
   @override
   Widget build(BuildContext context) {
-    final days = ['Sun', 'Mon', 'Tues'];
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -21,7 +27,7 @@ class templateList extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(padding),
                     child: Text(
-                      "Notes",
+                      "Student List",
                       style:
                           TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
                     ),
@@ -30,7 +36,7 @@ class templateList extends StatelessWidget {
 
                 Expanded(
                   child: ListView.builder(
-                    itemCount: days.length,
+                    itemCount: data.length,
                     itemBuilder: (context, index) {
                       return Container(
                         //height: 50,
@@ -38,9 +44,9 @@ class templateList extends StatelessWidget {
                         padding: EdgeInsets.only(left: padding, right: padding),
                         child: Card(
                           child: ListTile(
-                            title: Text(days[index]),
+                            title: Text(data[index].name),
                             onTap: () {
-                              print(days[index]);
+                              // print(days[index]);
                             },
                           ),
                         ),
