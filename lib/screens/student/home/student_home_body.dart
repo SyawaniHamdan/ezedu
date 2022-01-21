@@ -1,29 +1,35 @@
+import 'package:ezedu/screens/student/home/student_home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:stacked/stacked.dart';
 
-void main() {
-  runApp(StudentHome());
+class StudentHomeBody extends StatefulWidget {
+  const StudentHomeBody({Key? key}) : super(key: key);
+
+  @override
+  State<StudentHomeBody> createState() => _StudentHomeBody();
 }
 
-class StudentHome extends StatelessWidget {
-  
+class _StudentHomeBody extends State<StudentHomeBody>{
+
   // mock data 
   final subject = ['Science', 'Physics', 'English'];
   final tutor = ['Joseph Ng', 'Azalina Harun', 'Priyanka Chopra'];
   final rating = [4.2,4.3,3.5];
   final location = ['Johor Bahru, Johor', 'Pasir Mas, Kelantan', 'Subang Jaya, Selangor'];
-  
+
   double padding = 10;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            backgroundColor: Colors.lightBlue[50],
-            body: Column(
+   return ViewModelBuilder<StudentHomeViewModel>.reactive(
+     disposeViewModel: false,
+     viewModelBuilder: () => StudentHomeViewModel(), 
+     builder: (context, model, child) => Scaffold(
+       //appbar
+       body: Column(
               children: [
-                Align(
+                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: EdgeInsets.all(padding),
@@ -58,7 +64,7 @@ class StudentHome extends StatelessWidget {
                                   itemCount: 5,
                                   itemSize: 20.0,
                                   itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
-                                  itemBuilder: (context, _) => Icon(
+                                  itemBuilder: (context, _) => const Icon(
                                     Icons.star,
                                     color: Colors.amber,
                                   ),
@@ -83,6 +89,7 @@ class StudentHome extends StatelessWidget {
                   ),
                 ),
               ],
-            )));
+            ),
+     ));
   }
 }
