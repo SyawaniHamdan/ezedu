@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "11280626685",
+    "project_id": "ezedu-5109f",
+    "storage_bucket": "ezedu-5109f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11280626685:android:1e19a7e526a2b3862c5f94",
+        "android_client_info": {
+          "package_name": "com.example.ezedu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11280626685-hst8ss0qh7l0gl000p22fiamageiemp3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAykzUB_qEkXrJhKwpleb8NaIVFy4yFAZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11280626685-hst8ss0qh7l0gl000p22fiamageiemp3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

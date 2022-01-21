@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primaryColor: primaryColor,
       ),
 
-      home: TutorProfileMainScreen(),
+      home: HomeMainScreen(),
 
     );
   }

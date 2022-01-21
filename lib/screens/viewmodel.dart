@@ -1,0 +1,4 @@
+import 'package:stacked/stacked.dart';
+import 'package:ezedu/app/locator.dart';
+
+class ViewModel extends BaseViewModel {}
