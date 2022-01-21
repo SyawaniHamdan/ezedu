@@ -1,13 +1,19 @@
+import 'package:ezedu/screens/tutor/menu/tutor_menu_chatList.dart';
+import 'package:ezedu/screens/tutor/menu/tutor_menu_feed.dart';
+import 'package:ezedu/screens/tutor/menu/tutor_menu_notes.dart';
+import 'package:ezedu/screens/tutor/menu/tutor_menu_studentList.dart';
 import 'package:ezedu/templates/templateCallTabBody.dart';
 import 'package:ezedu/templates/templateList.dart';
 import 'package:flutter/material.dart';
 
+import '../../../data/student_list.dart';
+
 void main() {
-  runApp(const templateMenu());
+  runApp(const tutorMainMenu());
 }
 
-class templateMenu extends StatelessWidget {
-  const templateMenu({Key? key}) : super(key: key);
+class tutorMainMenu extends StatelessWidget {
+  const tutorMainMenu({Key? key}) : super(key: key);
 
   // static const rightColor = Color(0xFF36d1dc);
   //static const leftColor = Color(0xFF5b86e5);
@@ -46,41 +52,22 @@ class templateMenu extends StatelessWidget {
             bottom: const TabBar(
               indicatorColor: secondaryColor,
               tabs: [
-                // FOR TEACHER
                 Tab(icon: Icon(Icons.dynamic_feed)),
                 Tab(icon: Icon(Icons.note)),
                 Tab(icon: Icon(Icons.wc)),
                 Tab(icon: Icon(Icons.chat)),
                 Tab(icon: Icon(Icons.payments)),
-
-                //FOR STUDENT
-                /*
-                Tab(icon: Icon(Icons.view_list)),
-                Tab(icon: Icon(Icons.note)),
-                Tab(icon: Icon(Icons.class_)),
-                Tab(icon: Icon(Icons.chat)),
-                Tab(icon: Icon(Icons.payments)),
-                */
               ],
             ),
           ),
           backgroundColor: Color.fromARGB(255, 238, 238, 238),
           body: TabBarView(
             children: [
-              //CALL THE CALSS FROM ANOTHER SCRIPT TO DISPLAY STUFF
-              new templatePlain(), //refet to this script to edit
-
-              new templateList(),
-
-              Text(
-                'student list',
-                style: TextStyle(fontSize: 21),
-              ),
-              Text(
-                'chat',
-                style: TextStyle(fontSize: 21),
-              ),
-              Text(
+              tutorFeed(),
+              tutorNote(),
+              tutorStudentList(data: studentList),
+              tutorChat(),
+              const Text(
                 'payment',
                 style: TextStyle(fontSize: 21),
               ),
