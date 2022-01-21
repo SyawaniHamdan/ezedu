@@ -4,7 +4,7 @@ import 'package:ezedu/screens/tutor/profile/widgets/tutor_profile_bottom.dart';
 import 'package:flutter/material.dart';
 
 
-class TutorLoginMainScreen extends StatelessWidget {
+class TutorProfileMainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
