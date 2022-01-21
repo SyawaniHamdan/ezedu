@@ -1,13 +1,16 @@
-import 'package:ezedu/templates/templateCallTabBody.dart';
-import 'package:ezedu/templates/templateList.dart';
+import 'package:ezedu/screens/student/student_bill.dart';
+import 'package:ezedu/screens/student/student_chat.dart';
+import 'package:ezedu/screens/student/student_enrolled.dart';
+import 'package:ezedu/screens/student/student_notes.dart';
+import 'package:ezedu/screens/student/student_home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const templateMenu());
+  runApp(const StudentMenu());
 }
 
-class templateMenu extends StatelessWidget {
-  const templateMenu({Key? key}) : super(key: key);
+class StudentMenu extends StatelessWidget {
+  const StudentMenu({Key? key}) : super(key: key);
   static const primaryColor =
       Color.fromARGB(255, 28, 100, 196); //BACKGROUNDCOLOR
   static const secondaryColor =
@@ -28,8 +31,10 @@ class templateMenu extends StatelessWidget {
                       'https://i.pinimg.com/474x/76/94/84/769484dafbe89bf2b8a22379658956c4.jpg',
                       height: 50,
                       width: 50)),
-              Text("  "),
-              Text("ALI BABA"),
+              Padding(padding:
+                  EdgeInsets.only(left: 20,),
+                  child: Text('Ali Baba'),
+                  ),
 
               //STAR RATING FOR LECT
             ]),
@@ -37,44 +42,25 @@ class templateMenu extends StatelessWidget {
             bottom: const TabBar(
               indicatorColor: secondaryColor,
               tabs: [
-                // FOR TEACHER
-                Tab(icon: Icon(Icons.dynamic_feed)),
-                Tab(icon: Icon(Icons.note)),
-                Tab(icon: Icon(Icons.wc)),
-                Tab(icon: Icon(Icons.chat)),
-                Tab(icon: Icon(Icons.payments)),
-
                 //FOR STUDENT
-                /*
+
                 Tab(icon: Icon(Icons.view_list)),
                 Tab(icon: Icon(Icons.note)),
                 Tab(icon: Icon(Icons.class_)),
                 Tab(icon: Icon(Icons.chat)),
                 Tab(icon: Icon(Icons.payments)),
-                */
               ],
             ),
           ),
-          backgroundColor: Color.fromARGB(255, 238, 238, 238),
+          backgroundColor: const Color.fromARGB(255, 238, 238, 238),
           body: TabBarView(
             children: [
               //CALL THE CALSS FROM ANOTHER SCRIPT TO DISPLAY STUFF
-              new templatePlain(), //refet to this script to edit
-
-              new templateList(),
-
-              Text(
-                'student list',
-                style: TextStyle(fontSize: 21),
-              ),
-              Text(
-                'chat',
-                style: TextStyle(fontSize: 21),
-              ),
-              Text(
-                'payment',
-                style: TextStyle(fontSize: 21),
-              ),
+              StudentHome(), //refet to this script to edit
+              StudentNote(),
+              StudentEnrolled(),
+              StudentChat(),
+              StudentBill(),
             ],
           ),
         ),
