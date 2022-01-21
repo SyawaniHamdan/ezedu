@@ -5,11 +5,6 @@ void main() {
 }
 
 class StudentNote extends StatefulWidget {
-  static const primaryColor =
-      Color.fromARGB(255, 28, 100, 196); //BACKGROUNDCOLOR
-  static const secondaryColor =
-      Color.fromARGB(255, 255, 0, 0); //INDICATOR COLOR
-  @override
   @override
   State<StudentNote> createState() => _StudentNote();
 }
@@ -23,6 +18,7 @@ class _StudentNote extends State<StudentNote> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.lightBlue[50],
         body: Column(
@@ -30,29 +26,32 @@ class _StudentNote extends State<StudentNote> {
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                    padding: EdgeInsets.all(padding),
-                    child: const Text("Lecture Notes",
-                      style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                padding: EdgeInsets.all(padding),
+                child: const Text(
+                  "Lecture Notes",
+                  style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
             Expanded(
-                child: ListView.builder(  
+                child: ListView.builder(
                     itemCount: tutor.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        child: Column(
+                          child: Column(
                         children: <Widget>[
-                           ExpansionTile(
-                             backgroundColor: Colors.white,
+                          ExpansionTile(
+                            backgroundColor: Colors.white,
                             title: Text(tutor[index]),
                             subtitle: Text(subject[index]),
                             children: const [
-                              ListTile(title: Text("Notes Example"),)
-                            ],)
+                              ListTile(
+                                title: Text("Notes Example"),
+                              )
+                            ],
+                          )
                         ],
-                      )
-                      );
+                      ));
                     })),
           ],
         ),
@@ -60,5 +59,3 @@ class _StudentNote extends State<StudentNote> {
     );
   }
 }
-
-

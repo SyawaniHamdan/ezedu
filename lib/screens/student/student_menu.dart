@@ -11,10 +11,10 @@ void main() {
 
 class StudentMenu extends StatelessWidget {
   const StudentMenu({Key? key}) : super(key: key);
-  static const primaryColor =
-      Color.fromARGB(255, 28, 100, 196); //BACKGROUNDCOLOR
+  static const rightColor = Color(0xFF7f53ac);
+  static const leftColor = Color(0xFF647dee);
   static const secondaryColor =
-      Color.fromARGB(255, 255, 0, 0); //INDICATOR COLOR
+      Color.fromARGB(255, 238, 255, 0); //INDICATOR COLOR
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,14 +31,22 @@ class StudentMenu extends StatelessWidget {
                       'https://i.pinimg.com/474x/76/94/84/769484dafbe89bf2b8a22379658956c4.jpg',
                       height: 50,
                       width: 50)),
-              Padding(padding:
-                  EdgeInsets.only(left: 20,),
-                  child: Text('Ali Baba'),
-                  ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 20,
+                ),
+                child: Text('Ali Baba'),
+              ),
 
               //STAR RATING FOR LECT
             ]),
-            backgroundColor: primaryColor,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [rightColor, leftColor])),
+            ),
             bottom: const TabBar(
               indicatorColor: secondaryColor,
               tabs: [
