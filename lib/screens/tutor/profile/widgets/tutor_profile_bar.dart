@@ -6,7 +6,7 @@ class TutorProfileBar extends StatelessWidget implements PreferredSizeWidget {
         return AppBar(
           backgroundColor: Color(0xFF006064),
           centerTitle: true,
-          title: Text('Profile Details'),
+          title: Text('Profile Dashboard'),
           leading: new IconButton(
           icon: new Icon(Icons.arrow_back_outlined),
           onPressed: () {},

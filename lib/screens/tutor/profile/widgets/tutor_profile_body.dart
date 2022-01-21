@@ -5,6 +5,10 @@ class TutorProfileBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.fromLTRB(30, 30, 30, 10),
+        child: GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
         child: ListView(children: <Widget>[
           Center(
               child: Stack(children: <Widget>[
@@ -60,21 +64,26 @@ class TutorProfileBody extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(
-            height: 15,
+            height: 30.0,
           ),
-            const SizedBox(
-            height: 15,
+          TextField(
+            decoration: InputDecoration(
+              labelText: 'About',
+              labelStyle: TextStyle(
+                fontSize: 24, 
+                fontWeight: FontWeight.bold),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              hintText: 'show about tutor',
+              hintStyle: TextStyle(
+                fontSize: 16, 
+                fontWeight: FontWeight.bold,
+              )
+            ),
           ),
-          Text(
-              'About',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'show about user',
-              style: TextStyle(fontSize: 16, height: 1.4),
-            ),
-        ]));
-        
+          const SizedBox(height: 16),
+
+          //list of qualification cikgu tu
+        ]),
+        ));
   }
 }
