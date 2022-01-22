@@ -7,12 +7,14 @@ import 'package:ezedu/screens/student/tab/student_tab_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class StudentTab extends StatefulWidget {
+import 'guest_menu_list.dart';
+
+class GuestMain extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _StudentTab();
+  State<StatefulWidget> createState() => _GuestMain();
 }
 
-class _StudentTab extends State<StudentTab> {
+class _GuestMain extends State<GuestMain> {
   static const rightColor = Color(0xFF7f53ac);
   static const leftColor = Color(0xFF647dee);
   static const secondaryColor =
@@ -31,63 +33,33 @@ class _StudentTab extends State<StudentTab> {
                   child: Scaffold(
                     appBar: AppBar(
                       toolbarHeight: 80,
-                      title: Row(children: <Widget>[
-                        ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Image.network(
-                                'https://i.pinimg.com/474x/76/94/84/769484dafbe89bf2b8a22379658956c4.jpg',
-                                height: 50,
-                                width: 50)),
-                        const Padding(
+                      title: Row(children: const <Widget>[
+                        Padding(
                           padding: EdgeInsets.only(
                             left: 20,
                           ),
-                          child: Text('Ali Baba'),
+                          child: Text('Welcome, Guest'),
                         ),
                       ]),
                       actions: <Widget>[
                         IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.logout,
                             color: Colors.white,
                           ),
-                          onPressed: () =>
-                              Navigator.of(context).popUntil((route) {
-                            return route.isFirst;
-                          }),
+                          onPressed: () => Navigator.pop(context),
                         )
                       ],
                       flexibleSpace: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             gradient: LinearGradient(
                                 begin: Alignment.topRight,
                                 end: Alignment.bottomLeft,
                                 colors: [rightColor, leftColor])),
                       ),
-                      bottom: const TabBar(
-                        indicatorColor: secondaryColor,
-                        tabs: [
-                          //FOR STUDENT
-
-                          Tab(icon: Icon(Icons.view_list)),
-                          Tab(icon: Icon(Icons.note)),
-                          Tab(icon: Icon(Icons.class_)),
-                          Tab(icon: Icon(Icons.chat)),
-                          Tab(icon: Icon(Icons.payments)),
-                        ],
-                      ),
                     ),
-                    backgroundColor: const Color.fromARGB(255, 238, 238, 238),
-                    body: const TabBarView(
-                      children: [
-                        //CALL THE CALSS FROM ANOTHER SCRIPT TO DISPLAY STUFF
-                        StudentHomeMainScreen(), //refet to this script to edit
-                        StudentNotesMainScreen(),
-                        StudentClassesMainScreen(),
-                        StudentChatMainScreen(),
-                        StudentPaymentMainScreen(),
-                      ],
-                    ),
+                    backgroundColor: Color.fromARGB(255, 238, 238, 238),
+                    body: const GuestList(),
                   ),
                 ),
               ),
