@@ -7,17 +7,13 @@ class TutorService {
     CollectionReference tutors =
         FirebaseFirestore.instance.collection('tutors');
 
-    return tutors
-        .doc(tutor.id)
-        .set({
-          'id': tutor.id,
-          'name': tutor.name,
-          'email': tutor.email,
-          'phone': tutor.phone,
-          'gender': tutor.gender,
-          'address': tutor.address,
-        })
-        .then((value) => "User Added")
-        .catchError((error) => "Failed to add user: $error");
+    tutors.doc(tutor.id).set({
+      'id': tutor.id,
+      'name': tutor.name,
+      'email': tutor.email,
+      'phone': tutor.phone,
+      'gender': tutor.gender,
+      'address': tutor.address,
+    });
   }
 }

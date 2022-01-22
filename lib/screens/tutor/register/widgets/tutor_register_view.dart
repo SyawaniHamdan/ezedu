@@ -99,7 +99,17 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 10),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          model.signUp(
+                            name: nameController.text,
+                            email: emailController.text,
+                            password: passwordController.text,
+                            phone: phoneController.text,
+                            gender: genderController.text,
+                            address: addressController.text,
+                            type: "Tutor",
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           onPrimary: Colors.teal,
                           primary: Colors.cyan[100],

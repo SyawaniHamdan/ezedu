@@ -4,7 +4,7 @@ import 'package:ezedu/services/authentication_service.dart';
 import 'package:ezedu/services/tutor_service.dart';
 import 'package:get_it/get_it.dart';
 
-final GetIt locator = GetIt.instance;
+GetIt locator = GetIt.instance;
 
 void initializeLocator() {
   // Services
