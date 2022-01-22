@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:stacked/stacked.dart';
 
-class StudentHomeBody extends StatefulWidget {
-  const StudentHomeBody({Key? key}) : super(key: key);
+class GuestList extends StatefulWidget {
+  const GuestList({Key? key}) : super(key: key);
 
   @override
-  State<StudentHomeBody> createState() => _StudentHomeBody();
+  State<GuestList> createState() => _GuestList();
 }
 
-class _StudentHomeBody extends State<StudentHomeBody> {
+class _GuestList extends State<GuestList> {
   // mock data
   final subject = ['Science', 'Physics', 'English'];
   final tutor = ['Joseph Ng', 'Azalina Harun', 'Priyanka Chopra'];
@@ -38,7 +38,7 @@ class _StudentHomeBody extends State<StudentHomeBody> {
                     child: Padding(
                       padding: EdgeInsets.all(padding),
                       child: const Text(
-                        "Class List",
+                        "Classes List",
                         style: TextStyle(
                             fontSize: 21, fontWeight: FontWeight.bold),
                       ),
@@ -79,14 +79,6 @@ class _StudentHomeBody extends State<StudentHomeBody> {
                                     ),
                                     Text(location[index]),
                                     //Text(subtitle[index]),
-                                  ],
-                                ),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ElevatedButton(
-                                        onPressed: () {},
-                                        child: const Text("Hire Now"))
                                   ],
                                 ),
                               ),

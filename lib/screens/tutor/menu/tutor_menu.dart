@@ -42,6 +42,17 @@ class tutorMainMenu extends StatelessWidget {
 
               //STAR RATING FOR LECT
             ]),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                ),
+                onPressed: () => Navigator.of(context).popUntil((route) {
+                  return route.isFirst;
+                }),
+              )
+            ],
             flexibleSpace: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(

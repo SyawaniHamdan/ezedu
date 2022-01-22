@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TutorLoginMainBody extends StatelessWidget {
+class StudentLoginMainBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -52,7 +52,7 @@ class TutorLoginMainBody extends StatelessWidget {
               onPressed: () {
                 // call funtion login kat viewmodel
 
-                Navigator.pushNamed(context, '/tutor_home');
+                Navigator.pushNamed(context, '/student_tab');
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.cyan[800], //change background color of button
