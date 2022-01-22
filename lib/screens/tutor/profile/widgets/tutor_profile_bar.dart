@@ -1,15 +1,24 @@
+import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
 import 'package:flutter/material.dart';
 
 class TutorProfileBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
         return AppBar(
-          backgroundColor: Color(0xFF006064),
+          backgroundColor: const Color(0xFF006064),
           centerTitle: true,
           title: Text('Profile Dashboard'),
-          leading: new IconButton(
-          icon: new Icon(Icons.arrow_back_outlined),
-          onPressed: () {},
+          leading: IconButton(
+          icon: Icon(Icons.arrow_back_outlined),
+          onPressed: () {
+            Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                tutorMainMenu(),
+          ),
+        );
+          },
         ),
           flexibleSpace: Container(
            decoration: BoxDecoration(

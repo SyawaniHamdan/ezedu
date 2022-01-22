@@ -2,6 +2,8 @@ import 'package:ezedu/screens/tutor/menu/tutor_menu_chatList.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_feed.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_notes.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_studentList.dart';
+import 'package:ezedu/screens/tutor/payment/tutor_payment_main_screen.dart';
+import 'package:ezedu/screens/tutor/profile/widgets/tutor_profile_main_screen.dart';
 import 'package:ezedu/templates/templateCallTabBody.dart';
 import 'package:ezedu/templates/templateList.dart';
 import 'package:flutter/material.dart';
@@ -31,12 +33,23 @@ class tutorMainMenu extends StatelessWidget {
           appBar: AppBar(
             toolbarHeight: 80,
             title: Row(children: <Widget>[
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TutorProfileMainScreen(),
+                    ),
+                  );
+                }, // Image tapped
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50.0),
                   child: Image.network(
                       'https://i.pinimg.com/474x/76/94/84/769484dafbe89bf2b8a22379658956c4.jpg',
                       height: 50,
-                      width: 50)),
+                      width: 50),
+                ),
+              ),
               Text("  "),
               Text("ALI BABA"),
 
@@ -78,10 +91,7 @@ class tutorMainMenu extends StatelessWidget {
               tutorNote(),
               tutorStudentList(data: studentList),
               tutorChat(),
-              const Text(
-                'payment',
-                style: TextStyle(fontSize: 21),
-              ),
+              const TutorPaymentMainScreen(),
             ],
           ),
         ),

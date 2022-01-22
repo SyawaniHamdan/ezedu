@@ -4,6 +4,8 @@ import 'package:ezedu/services/tutor_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/foundation.dart';
 
+import '../app/locator.dart';
+
 class AuthenticationService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
   final TutorService _tutorService = locator<TutorService>();
