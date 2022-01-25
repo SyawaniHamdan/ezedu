@@ -4,17 +4,11 @@ import 'package:ezedu/screens/tutor/menu/tutor_menu_notes.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_studentList.dart';
 import 'package:ezedu/screens/tutor/payment/tutor_payment_main_screen.dart';
 import 'package:ezedu/screens/tutor/profile/widgets/tutor_profile_main_screen.dart';
-import 'package:ezedu/templates/templateCallTabBody.dart';
-import 'package:ezedu/templates/templateList.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/student_list.dart';
 
-void main() {
-  runApp(const tutorMainMenu());
-}
-
-class tutorMainMenu extends StatelessWidget {
+class tutorMainMenu extends StatefulWidget {
   const tutorMainMenu({Key? key}) : super(key: key);
 
   // static const rightColor = Color(0xFF36d1dc);
@@ -22,7 +16,13 @@ class tutorMainMenu extends StatelessWidget {
   static const rightColor = Color(0xFF7f53ac);
   static const leftColor = Color(0xFF647dee);
   static const secondaryColor =
-      Color.fromARGB(255, 238, 255, 0); //INDICATOR COLOR
+      Color.fromARGB(255, 238, 255, 0); 
+  @override
+  State<tutorMainMenu> createState() => _tutorMainMenuState();
+}
+
+class _tutorMainMenuState extends State<tutorMainMenu> {
+ //INDICATOR COLOR
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -71,10 +71,10 @@ class tutorMainMenu extends StatelessWidget {
                   gradient: LinearGradient(
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
-                      colors: [rightColor, leftColor])),
+                      colors: [tutorMainMenu.rightColor, tutorMainMenu.leftColor])),
             ),
             bottom: const TabBar(
-              indicatorColor: secondaryColor,
+              indicatorColor: tutorMainMenu.secondaryColor,
               tabs: [
                 Tab(icon: Icon(Icons.dynamic_feed)),
                 Tab(icon: Icon(Icons.note)),

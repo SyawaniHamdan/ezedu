@@ -10,7 +10,7 @@ class TutorLoginMainBody extends StatelessWidget {
           Container(
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Text(
+            child: const Text(
               "LOGIN",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -19,35 +19,35 @@ class TutorLoginMainBody extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 40),
-            child: TextField(
-              decoration: InputDecoration(labelText: "Username"),
+            margin: const EdgeInsets.symmetric(horizontal: 40),
+            child: const TextField(
+              decoration: InputDecoration(labelText: "Email"),
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 40),
-            child: TextField(
+            margin: const EdgeInsets.symmetric(horizontal: 40),
+            child: const TextField(
               decoration: InputDecoration(labelText: "Password"),
               obscureText: true,
             ),
           ),
           Container(
             alignment: Alignment.centerRight,
-            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            child: Text(
+            margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            child: const Text(
               "Forgot your password?",
               style: TextStyle(fontSize: 12, color: Color(0XFFE53935)),
             ),
           ),
-          SizedBox(height: 16),
+         const SizedBox(height: 16),
           Container(
             alignment: Alignment.centerRight,
-            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
             child: ElevatedButton(
               onPressed: () {
                 // call funtion login kat viewmodel
@@ -67,7 +67,7 @@ class TutorLoginMainBody extends StatelessWidget {
                 height: 50.0,
                 width: 150,
                 padding: const EdgeInsets.all(0),
-                child: Text(
+                child: const Text(
                   "LOGIN",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -77,10 +77,10 @@ class TutorLoginMainBody extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.centerRight,
-            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
             child: GestureDetector(
               onTap: () {},
-              child: Text(
+              child:const Text(
                 "Don't Have an Account? Sign up",
                 style: TextStyle(
                     fontSize: 12,
