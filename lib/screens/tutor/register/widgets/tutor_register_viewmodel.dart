@@ -1,7 +1,9 @@
+import 'package:ezedu/screens/tutor/login/widgets/login_mvvm_view.dart';
+import 'package:ezedu/screens/tutor/login/widgets/tutor_login_main_screen.dart';
 import 'package:ezedu/services/authentication_service.dart';
-import 'package:flutter/material.dart';
 import 'package:ezedu/screens/viewmodel.dart';
 import 'package:ezedu/app/locator.dart';
+import 'package:flutter/material.dart';
 
 class TutorRegisterViewModel extends ViewModel {
   final AuthenticationService _authenticationService =
@@ -35,11 +37,15 @@ class TutorRegisterViewModel extends ViewModel {
       print("Register Failed!");
     } else {
       if (result != null) {
-        await Future.delayed(Duration(seconds: 1));
+        await Future.delayed(const Duration(seconds: 1));
         print("Register Success!");
       } else {
         print("Register Failed!");
       }
     }
+  }
+  void navigateToSignIn(context) {
+    Navigator.of(context, rootNavigator: true).pushReplacement(
+              MaterialPageRoute(builder: (context) => TutorLoginView()));
   }
 }

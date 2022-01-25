@@ -2,12 +2,24 @@ import 'package:ezedu/screens/tutor/login/widgets/tutor_login_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class LoginMvvmView extends StatefulWidget {
+class TutorLoginView extends StatefulWidget {
+  static Route route() => MaterialPageRoute(builder: (context) => TutorLoginView());
+
   @override
-  State<LoginMvvmView> createState() => _LoginMvvmViewState();
+  State<TutorLoginView> createState() => TutorLoginViewState();
 }
 
-class _LoginMvvmViewState extends State<LoginMvvmView> {
+class TutorLoginViewState extends State<TutorLoginView> {
+
+  String _email = '';
+  String _password = '';
+
+  get email => _email;
+  set email(value) => setState(() => _email = value);
+
+  get password => _password;
+  set password(value) => setState(() => _password = value);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<TutorLoginViewModel>.reactive(
@@ -15,7 +27,6 @@ class _LoginMvvmViewState extends State<LoginMvvmView> {
         viewModelBuilder: () => TutorLoginViewModel(),
         // onModelReady: (model) => model.initialise(),
         builder: (context, model, child) => Scaffold(
-              // appBar: ,
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -36,27 +47,28 @@ class _LoginMvvmViewState extends State<LoginMvvmView> {
                     Container(
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
-                      child: const TextField(
-                        decoration: InputDecoration(labelText: "Username"),
+                      child: TextFormField(
+                        decoration: const InputDecoration(labelText: "Email"),
+                         validator: (value) {
+                              if (value == null || value.isEmpty||
+                                  !value.contains('@') ||
+                                  !value.contains('.')) {
+                                return ('Please enter a valid email address');
+                              }
+                            },
+                            onChanged: (value) => email = value,
                       ),
                     ),
                     const SizedBox(height: 16),
                     Container(
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
-                      child: const TextField(
-                        decoration: InputDecoration(labelText: "Password"),
+                      child: TextFormField(
+                        decoration: const InputDecoration(labelText: "Password"),
                         obscureText: true,
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 10),
-                      child: const Text(
-                        "Forgot your password?",
-                        style:
-                            TextStyle(fontSize: 12, color: Color(0XFFE53935)),
+                        validator: (value) =>
+                                value==null || value.isEmpty ? 'Password is empty' : null,
+                        onChanged: (value) => password = value
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -65,9 +77,12 @@ class _LoginMvvmViewState extends State<LoginMvvmView> {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 10),
                       child: ElevatedButton(
-                        onPressed: () {
-                          model.testing();
-                        },
+                        onPressed: () async {
+                                model.login(
+                                    email: email,
+                                    password: password,
+                                    context: context);
+                            },
                         style: ElevatedButton.styleFrom(
                           primary: Colors
                               .cyan[800], //change background color of button
@@ -93,9 +108,11 @@ class _LoginMvvmViewState extends State<LoginMvvmView> {
                     Container(
                       alignment: Alignment.centerRight,
                       margin:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                          const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          model.navigateToRegister(context);
+                        },
                         child: const Text(
                           "Don't Have an Account? Sign up",
                           style: TextStyle(
