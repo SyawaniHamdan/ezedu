@@ -43,7 +43,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextField(
-                          decoration: InputDecoration(labelText: "Name"),
+                          decoration: const InputDecoration(labelText: "Name"),
                           controller: nameController),
                     ),
                     const SizedBox(height: 10.0),
@@ -52,7 +52,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextField(
                           decoration:
-                              InputDecoration(labelText: "Mobile Number"),
+                              const InputDecoration(labelText: "Mobile Number"),
                           controller: phoneController),
                     ),
                     const SizedBox(height: 10.0),
@@ -60,7 +60,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextField(
-                          decoration: InputDecoration(labelText: "Email"),
+                          decoration: const InputDecoration(labelText: "Email"),
                           controller: emailController),
                     ),
                     const SizedBox(height: 10.0),
@@ -68,7 +68,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextField(
-                        decoration: InputDecoration(labelText: "Password"),
+                        decoration: const InputDecoration(labelText: "Password"),
                         controller: passwordController,
                         obscureText: true,
                       ),
@@ -78,9 +78,8 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextField(
-                        decoration: InputDecoration(labelText: 'Gender'),
+                        decoration: const InputDecoration(labelText: 'Gender'),
                         controller: genderController,
-                        obscureText: true,
                       ),
                     ),
                     const SizedBox(height: 10.0),
@@ -88,9 +87,8 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextField(
-                        decoration: InputDecoration(labelText: 'Address'),
+                        decoration: const InputDecoration(labelText: 'Address'),
                         controller: addressController,
-                        obscureText: true,
                       ),
                     ),
                     const SizedBox(height: 30.0),
