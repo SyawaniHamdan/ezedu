@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(tutorNote());
-}
-
 class tutorNote extends StatefulWidget {
   @override
   State<tutorNote> createState() => _tutorNote();

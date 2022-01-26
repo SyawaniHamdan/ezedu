@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(tutorFeed());
-}
-
 class tutorFeed extends StatefulWidget {
   @override
   State<tutorFeed> createState() => _tutorFeed();

@@ -1,21 +1,27 @@
+import 'package:ezedu/screens/tutor/login/widgets/tutor_login_viewmodel.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 class TutorProfileBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
-        return AppBar(
+        return ViewModelBuilder<TutorLoginViewModel>.reactive(
+        disposeViewModel: false,
+        viewModelBuilder: () => TutorLoginViewModel(),
+        // onModelReady: (model) => model.initialise(),
+        builder: (context, model, child) => AppBar(
           backgroundColor: const Color(0xFF006064),
           centerTitle: true,
-          title: Text('Profile Dashboard'),
+          title:const Text('Profile Dashboard'),
           leading: IconButton(
-          icon: Icon(Icons.arrow_back_outlined),
+          icon: const Icon(Icons.arrow_back_outlined),
           onPressed: () {
             Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) =>
-                tutorMainMenu(),
+                const tutorMainMenu(),
           ),
         );
           },
@@ -29,9 +35,10 @@ class TutorProfileBar extends StatelessWidget implements PreferredSizeWidget {
               )
               ),
           )
+        )
         );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(50);
+  Size get preferredSize => const Size.fromHeight(50);
 }
