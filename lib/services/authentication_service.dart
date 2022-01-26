@@ -19,6 +19,7 @@ class AuthenticationService {
       auth.UserCredential userCredential = await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
       auth.User? user = userCredential.user;
+      await _populateCurrentTutor(user);
 
       return user != null;
     } catch (e) {
@@ -69,5 +70,12 @@ class AuthenticationService {
       // return e.message;
       return "Fail to logout!";
     }
+  }
+
+  Future<void> _populateCurrentTutor(auth.User? user) async {
+    if (user != null) {
+      _currentTutor = await _tutorService.getTutor(id: user.uid);
+    } else
+      _currentTutor = null;
   }
 }

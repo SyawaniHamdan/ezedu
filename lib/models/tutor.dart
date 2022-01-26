@@ -17,6 +17,7 @@ class Tutor {
       this.proPictuce = '',
       this.qualification = '',
       this.gender = ''});
+      
   Tutor.copy(from)
       : this(
             id: from.id,

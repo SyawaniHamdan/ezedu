@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../data/classes/student.dart';
 
-void main() {
-  runApp(tutorStudentList(
-    data: [],
-  ));
-}
-
 class tutorStudentList extends StatelessWidget {
   tutorStudentList({required this.data});
   final List<Student> data;
