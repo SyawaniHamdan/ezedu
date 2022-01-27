@@ -1,13 +1,37 @@
+import 'package:ezedu/models/tutor.dart';
 import 'package:ezedu/screens/tutor/profile/widgets/tutor_profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class TutorProfileBody extends StatefulWidget {
+  TutorProfileBody({this.tutor});
+  Tutor? tutor;
+
   @override
   State<TutorProfileBody> createState() => _TutorProfileBodyState();
 }
 
 class _TutorProfileBodyState extends State<TutorProfileBody> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
+  TextEditingController qualificationController = TextEditingController();
+  TextEditingController aboutController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    nameController = TextEditingController(text: widget.tutor!.name);
+    phoneController = TextEditingController(text: widget.tutor!.phone);
+    addressController = TextEditingController(text: widget.tutor!.address);
+    genderController = TextEditingController(text: widget.tutor!.gender);
+    qualificationController =
+        TextEditingController(text: widget.tutor!.qualification);
+    aboutController = TextEditingController(text: widget.tutor!.about);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<TutorProfileViewModel>.reactive(
@@ -78,6 +102,77 @@ class _TutorProfileBodyState extends State<TutorProfileBody> {
                   height: 30.0,
                 ),
                 TextFormField(
+                  controller: nameController,
+                  decoration: const InputDecoration(
+                      labelText: 'Name',
+                      labelStyle:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: 'nama saya',
+                      hintStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: phoneController,
+                  decoration: const InputDecoration(
+                      labelText: 'Phone',
+                      labelStyle:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: 'no saya',
+                      hintStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: addressController,
+                  decoration: const InputDecoration(
+                      labelText: 'address',
+                      labelStyle:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: 'address saya',
+                      hintStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: genderController,
+                  decoration: const InputDecoration(
+                      labelText: 'gender',
+                      labelStyle:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: 'gender saya',
+                      hintStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: qualificationController,
+                  decoration: const InputDecoration(
+                      labelText: 'qualification',
+                      labelStyle:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: 'qualification saya',
+                      hintStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: aboutController,
                   decoration: const InputDecoration(
                       labelText: 'About',
                       labelStyle:
@@ -90,7 +185,6 @@ class _TutorProfileBodyState extends State<TutorProfileBody> {
                       )),
                 ),
                 const SizedBox(height: 16),
-
                 //list of qualification cikgu tu
               ]),
             )));
