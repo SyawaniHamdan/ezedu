@@ -38,7 +38,7 @@ class _GuestList extends State<GuestList> {
                     child: Padding(
                       padding: EdgeInsets.all(padding),
                       child: const Text(
-                        "Classes List",
+                        "Class List",
                         style: TextStyle(
                             fontSize: 21, fontWeight: FontWeight.bold),
                       ),
