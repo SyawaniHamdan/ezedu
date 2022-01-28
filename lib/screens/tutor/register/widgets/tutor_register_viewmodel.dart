@@ -38,6 +38,8 @@ class TutorRegisterViewModel extends ViewModel {
     } else {
       if (result != null) {
         await Future.delayed(const Duration(seconds: 1));
+        await Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => TutorLoginMainScreen()));
         print("Register Success!");
       } else {
         print("Register Failed!");

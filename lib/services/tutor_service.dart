@@ -38,4 +38,18 @@ class TutorService {
       'about': "",
     });
   }
+
+  Future updateTutor(Tutor tutor) async {
+    CollectionReference tutors =
+        FirebaseFirestore.instance.collection('tutors');
+
+    tutors.doc(tutor.id).update({
+      'name': tutor.name,
+      'phone': tutor.phone,
+      'gender': tutor.gender,
+      'address': tutor.address,
+      'qualification': tutor.qualification,
+      'about': tutor.about,
+    });
+  }
 }

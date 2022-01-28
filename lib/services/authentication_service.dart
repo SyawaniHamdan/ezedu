@@ -29,13 +29,13 @@ class AuthenticationService {
   }
 
   Future registerWithEmailAndPassword({
-    @required String name = "",
-    @required String email = "",
-    @required String password = "",
-    @required String phone = "",
-    @required String gender = "",
-    @required String address = "",
-    @required String type = "",
+    String name = "",
+    String email = "",
+    String password = "",
+    String phone = "",
+    String gender = "",
+    String address = "",
+    String type = "",
   }) async {
     try {
       auth.UserCredential userCredential = await _firebaseAuth

@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:ezedu/models/tutor.dart';
+import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
 import 'package:ezedu/screens/tutor/profile/widgets/tutor_profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -64,9 +68,8 @@ class _TutorProfileBodyState extends State<TutorProfileBody> {
                         shape: BoxShape.circle,
                         color: Colors.blue,
                         image: const DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/images/logo_ezEdu.png'),
-                        )),
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/images/logo_ezEdu.png'))),
                   ),
                   Positioned(
                       bottom: 0,
@@ -90,9 +93,7 @@ class _TutorProfileBodyState extends State<TutorProfileBody> {
                         ),
                       ))
                 ])),
-                const SizedBox(
-                  height: 15,
-                ),
+                SizedBox(height: 15),
                 Text(
                   model.currentTutor.name,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
@@ -132,7 +133,7 @@ class _TutorProfileBodyState extends State<TutorProfileBody> {
                 TextFormField(
                   controller: addressController,
                   decoration: const InputDecoration(
-                      labelText: 'address',
+                      labelText: 'Address',
                       labelStyle:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -146,7 +147,7 @@ class _TutorProfileBodyState extends State<TutorProfileBody> {
                 TextFormField(
                   controller: genderController,
                   decoration: const InputDecoration(
-                      labelText: 'gender',
+                      labelText: 'Gender',
                       labelStyle:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -160,7 +161,7 @@ class _TutorProfileBodyState extends State<TutorProfileBody> {
                 TextFormField(
                   controller: qualificationController,
                   decoration: const InputDecoration(
-                      labelText: 'qualification',
+                      labelText: 'Qualification',
                       labelStyle:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -185,6 +186,69 @@ class _TutorProfileBodyState extends State<TutorProfileBody> {
                       )),
                 ),
                 const SizedBox(height: 16),
+                SizedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        //height: 50,
+                        padding: const EdgeInsets.only(bottom: 40),
+                        child: OutlinedButton(
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) => tutorMainMenu()));
+                            },
+                            style: OutlinedButton.styleFrom(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 50),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20))),
+                            child: const Text(
+                              'CANCEL',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  letterSpacing: 2.2,
+                                  color: Colors.black),
+                            )),
+                      ),
+                      Container(
+                          //height: 50,
+                          padding: const EdgeInsets.only(bottom: 40),
+                          child: ElevatedButton(
+                              onPressed: () async {
+                                model.updateTutor(
+                                  id: model.currentTutor.id,
+                                  name: nameController.text,
+                                  phone: phoneController.text,
+                                  address: addressController.text,
+                                  qualification: qualificationController.text,
+                                  gender: genderController.text,
+                                  about: aboutController.text,
+                                );
+
+                                await Future.delayed(Duration(seconds: 1));
+
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => tutorMainMenu()));
+                              },
+                              style: ElevatedButton.styleFrom(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 50),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                              ),
+                              child: const Text(
+                                'SAVE',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    letterSpacing: 2.2,
+                                    color: Colors.black),
+                              ))),
+                    ],
+                  ),
+                )
                 //list of qualification cikgu tu
               ]),
             )));

@@ -1,3 +1,4 @@
+import 'package:ezedu/screens/shared/toastAndDialog.dart';
 import 'package:ezedu/screens/tutor/register/widgets/tutor_register_view.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
 import 'package:ezedu/screens/viewmodel.dart';
@@ -25,6 +26,8 @@ class TutorLoginViewModel extends ViewModel {
 
     if (result is String) {
       print("Login Failed!");
+      awesomeSingleDialog(context, 'Alert!', result,
+          () => Navigator.of(context, rootNavigator: true).pop());
     } else {
       if (result != null) {
         await Future.delayed(const Duration(seconds: 1));
@@ -33,6 +36,11 @@ class TutorLoginViewModel extends ViewModel {
               MaterialPageRoute(builder: (context) => const tutorMainMenu()));
       } else {
         print("Login Failed!");
+        awesomeSingleDialog(
+            context,
+            'Alert!',
+            'General sign-in failure. Please try again later',
+            () => Navigator.of(context, rootNavigator: true).pop());
       }
     }
   }
