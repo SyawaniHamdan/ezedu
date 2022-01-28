@@ -4,6 +4,8 @@ import 'package:ezedu/services/tutor_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/foundation.dart';
 
+import '../app/locator.dart';
+
 class AuthenticationService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
   final TutorService _tutorService = locator<TutorService>();
@@ -17,6 +19,7 @@ class AuthenticationService {
       auth.UserCredential userCredential = await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
       auth.User? user = userCredential.user;
+      await _populateCurrentTutor(user);
 
       return user != null;
     } catch (e) {
@@ -67,5 +70,12 @@ class AuthenticationService {
       // return e.message;
       return "Fail to logout!";
     }
+  }
+
+  Future<void> _populateCurrentTutor(auth.User? user) async {
+    if (user != null) {
+      _currentTutor = await _tutorService.getTutor(id: user.uid);
+    } else
+      _currentTutor = null;
   }
 }

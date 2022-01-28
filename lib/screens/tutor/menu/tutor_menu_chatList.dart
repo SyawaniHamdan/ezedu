@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(tutorChat());
-}
 
 class tutorChat extends StatelessWidget {
   double padding = 10;
