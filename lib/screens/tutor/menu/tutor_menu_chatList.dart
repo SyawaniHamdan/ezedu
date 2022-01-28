@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+class tutorChat extends StatefulWidget {
+  @override
+  State<tutorChat> createState() => _tutorChat();
+}
 
-class tutorChat extends StatelessWidget {
+class _tutorChat extends State<tutorChat> {
   double padding = 10;
   @override
   Widget build(BuildContext context) {

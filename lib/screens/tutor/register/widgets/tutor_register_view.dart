@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class TutorRegistration extends StatefulWidget {
-
   static Route route() =>
       MaterialPageRoute(builder: (context) => TutorRegistration());
 
@@ -44,14 +43,14 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   get address => _address;
   set address(value) => setState(() => _address = value);
 
-
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<TutorRegisterViewModel>.reactive(
         disposeViewModel: false,
         viewModelBuilder: () => TutorRegisterViewModel(),
         builder: (context, model, child) => Scaffold(
-              body: Center(
+                body: Center(
+              child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -74,7 +73,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       child: TextFormField(
                           decoration: const InputDecoration(labelText: "Name"),
                           controller: nameController,
-                          onChanged: (value) => name = value),                         
+                          onChanged: (value) => name = value),
                     ),
                     const SizedBox(height: 10.0),
                     Container(
@@ -90,17 +89,17 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                     Container(
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
-                      
                       child: TextFormField(
                           decoration: const InputDecoration(labelText: "Email"),
                           controller: emailController,
                           validator: (value) {
-                              if (value == null || value.isEmpty||
-                                  !value.contains('@') ||
-                                  !value.contains('.')) {
-                                return ('Please enter a valid email address');
-                              }
-                            },
+                            if (value == null ||
+                                value.isEmpty ||
+                                !value.contains('@') ||
+                                !value.contains('.')) {
+                              return ('Please enter a valid email address');
+                            }
+                          },
                           onChanged: (value) => email = value),
                     ),
                     const SizedBox(height: 10.0),
@@ -108,33 +107,34 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextFormField(
-                        decoration: const InputDecoration(labelText: "Password"),
-                        controller: passwordController,
-                        obscureText: true,
-                        validator: (value) =>
-                                value==null || value.isEmpty ? 'Password is empty' : null,
-                        onChanged: (value) => password = value
-                      ),
+                          decoration:
+                              const InputDecoration(labelText: "Password"),
+                          controller: passwordController,
+                          obscureText: true,
+                          validator: (value) => value == null || value.isEmpty
+                              ? 'Password is empty'
+                              : null,
+                          onChanged: (value) => password = value),
                     ),
                     const SizedBox(height: 10.0),
                     Container(
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextFormField(
-                        decoration: const InputDecoration(labelText: 'Gender'),
-                        controller: genderController,
-                        onChanged: (value) => gender = value
-                      ),
+                          decoration:
+                              const InputDecoration(labelText: 'Gender'),
+                          controller: genderController,
+                          onChanged: (value) => gender = value),
                     ),
                     const SizedBox(height: 10.0),
                     Container(
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextFormField(
-                        decoration: const InputDecoration(labelText: 'Address'),
-                        controller: addressController,
-                        onChanged: (value) => address = value
-                      ),
+                          decoration:
+                              const InputDecoration(labelText: 'Address'),
+                          controller: addressController,
+                          onChanged: (value) => address = value),
                     ),
                     const SizedBox(height: 30.0),
                     Container(
@@ -185,9 +185,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 40, vertical: 10),
                       child: GestureDetector(
-                        onTap: () => {
-                          model.navigateToSignIn(context)
-                        },
+                        onTap: () => {model.navigateToSignIn(context)},
                         child: const Text(
                           "Already Have an Account? Sign in",
                           style: TextStyle(
@@ -200,6 +198,6 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                   ],
                 ),
               ),
-            ));
+            )));
   }
 }

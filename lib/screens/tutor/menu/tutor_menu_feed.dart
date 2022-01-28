@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class tutorFeed extends StatefulWidget {
@@ -39,7 +41,7 @@ class _tutorFeed extends State<tutorFeed> {
                   ),
                 ),
                 Container(
-                  child: new ListView(
+                  child: ListView(
                     shrinkWrap: true,
                     padding: const EdgeInsets.all(8.0),
                     children: <Widget>[
@@ -48,7 +50,7 @@ class _tutorFeed extends State<tutorFeed> {
                               padding: const EdgeInsets.all(10.0),
                               child: Column(
                                 children: <Widget>[
-                                  TextField(
+                                  const TextField(
                                     keyboardType: TextInputType.multiline,
                                     maxLines: null,
                                     minLines: 4,
@@ -73,7 +75,7 @@ class _tutorFeed extends State<tutorFeed> {
                                       ),
                                       ElevatedButton(
                                           onPressed: () {},
-                                          child: const Text("Send")),
+                                          child: Text("Send")),
                                       SizedBox(width: 10),
                                     ],
                                   ),
@@ -87,7 +89,7 @@ class _tutorFeed extends State<tutorFeed> {
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: EdgeInsets.all(padding),
-                    child: Text(
+                    child: const Text(
                       "Feed history",
                       style:
                           TextStyle(fontSize: 21, fontWeight: FontWeight.bold),

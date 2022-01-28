@@ -3,7 +3,7 @@ import 'package:ezedu/screens/tutor/menu/tutor_menu_chatList.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_feed.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_notes.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_studentList.dart';
-import 'package:ezedu/screens/tutor/menu/tutor_menu_viewmodel.dart';
+import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_menu_viewmodel.dart';
 import 'package:ezedu/screens/tutor/payment/tutor_payment_main_screen.dart';
 import 'package:ezedu/screens/tutor/profile/widgets/tutor_profile_main_screen.dart';
 import 'package:flutter/material.dart';
@@ -66,15 +66,13 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                     ]),
                     actions: <Widget>[
                       IconButton(
-                        icon: Icon(
-                          Icons.logout,
-                          color: Colors.white,
-                        ),
-                        onPressed: () =>
-                            Navigator.of(context).popUntil((route) {
-                          return route.isFirst;
-                        }),
-                      )
+                          icon: Icon(
+                            Icons.logout,
+                            color: Colors.white,
+                          ),
+                          onPressed: () => Navigator.pushNamed(context, '/')
+                          //  Navigator.of(context).popUntil((route) { return route.isFirst; }),
+                          )
                     ],
                     flexibleSpace: Container(
                       decoration: BoxDecoration(
@@ -102,7 +100,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                     children: [
                       tutorFeed(),
                       tutorNote(),
-                      tutorStudentList(data: studentList),
+                      _tutorStudentList(data: studentList),
                       tutorChat(),
                       const TutorPaymentMainScreen(),
                     ],

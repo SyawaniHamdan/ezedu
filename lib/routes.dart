@@ -2,8 +2,10 @@ import 'package:ezedu/screens/guest/guest_menu.dart';
 import 'package:ezedu/screens/home/main/widgets/home_main_screen.dart';
 import 'package:ezedu/screens/student/login/student_login_main.dart';
 import 'package:ezedu/screens/student/tab/student_tab.dart';
+import 'package:ezedu/screens/tutor/login/widgets/login_mvvm_view.dart';
 import 'package:ezedu/screens/tutor/login/widgets/tutor_login_main_screen.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
+import 'package:ezedu/screens/tutor/register/widgets/tutor_register_view.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -15,6 +17,8 @@ class Routes {
       //Navigation for TUTOR================================================================
       case '/tutor':
         return MaterialPageRoute(builder: (context) => TutorLoginMainScreen());
+      case '/tutor_login':
+        return MaterialPageRoute(builder: (context) => TutorLoginView());
       case '/tutor_home':
         return MaterialPageRoute(builder: (context) => const tutorMainMenu());
 
