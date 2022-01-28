@@ -14,8 +14,6 @@ class TutorProfileMainScreen extends StatelessWidget {
     return Scaffold(
       appBar: TutorProfileBar(),
       body: TutorProfileBody(tutor: tutor),
-      floatingActionButton: TutorProfileFloat(),
-      bottomNavigationBar: TutorProfileBottom(),
     );
   }
 }
