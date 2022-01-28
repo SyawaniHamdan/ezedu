@@ -28,7 +28,7 @@ class _HomeMainFloat extends State<HomeMainFloat> {
                 ),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/tutor');
+                Navigator.pushNamed(context, '/tutor_login');
               },
             ),
             const SizedBox(height: 25),
