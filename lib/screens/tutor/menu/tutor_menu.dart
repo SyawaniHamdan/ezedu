@@ -66,15 +66,14 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                     ]),
                     actions: <Widget>[
                       IconButton(
-                        icon: Icon(
-                          Icons.logout,
-                          color: Colors.white,
-                        ),
-                        onPressed: () =>
-                            Navigator.of(context).popUntil((route) {
-                          return route.isFirst;
-                        }),
-                      )
+                          // ignore: prefer_const_constructors
+                          icon: Icon(
+                            Icons.logout,
+                            color: Colors.white,
+                          ),
+                          onPressed: () => Navigator.pushNamed(context, '/')
+                          //  Navigator.of(context).popUntil((route) { return route.isFirst; }),
+                          )
                     ],
                     flexibleSpace: Container(
                       decoration: BoxDecoration(
@@ -102,7 +101,9 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                     children: [
                       tutorFeed(),
                       tutorNote(),
-                      tutorStudentList(data: studentList),
+                      tutorStudentList(
+                        data: [],
+                      ),
                       tutorChat(),
                       const TutorPaymentMainScreen(),
                     ],
