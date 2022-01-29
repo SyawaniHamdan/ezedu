@@ -1,4 +1,6 @@
+import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_viewmodel_chat.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 class tutorChat extends StatefulWidget {
   @override
@@ -10,7 +12,11 @@ class _tutorChat extends State<tutorChat> {
   @override
   Widget build(BuildContext context) {
     final chat = ['Lisa manoban', 'Jennie Jane', 'Rose Khan', 'Jisoo Hae'];
-    return MaterialApp(
+    return ViewModelBuilder<TutorChatListViewModel>.reactive(
+        disposeViewModel: false,
+        viewModelBuilder: () => TutorChatListViewModel(),
+        // onModelReady: (model) => model.initialise(),
+        builder: (context, model, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             backgroundColor: Colors.lightBlue[50],
@@ -63,6 +69,6 @@ class _tutorChat extends State<tutorChat> {
                   ),
                 ),
               ],
-            )));
+            ))));
   }
 }

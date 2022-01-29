@@ -4,13 +4,15 @@ class Subject {
   String subjectDesc;
   String subjectPrice;
   String subjectSlot;
+  String tutorId;
 
   Subject(
       {this.id = '',
       this.subjectName = '',
       this.subjectDesc = '',
       this.subjectPrice = '',
-      this.subjectSlot = ''
+      this.subjectSlot = '',
+      this.tutorId = ''
       });
   Subject.copy(from)
       : this(
@@ -18,7 +20,8 @@ class Subject {
             subjectName: from.subjectName,
             subjectDesc: from.subjectDesc,
             subjectPrice: from.subjectPrice,
-            subjectSlot: from.subjectSlot
+            subjectSlot: from.subjectSlot,
+            tutorId: from.tutorId
             );
 
   Subject.fromJson(Map<String, dynamic> json)
@@ -27,7 +30,8 @@ class Subject {
             subjectName: json['subjectName'],
             subjectDesc: json['subjectDesc'],
             subjectPrice: json['subjectPrice'],
-            subjectSlot: json['subjectSlot']
+            subjectSlot: json['subjectSlot'],
+            tutorId: json['tutorId']
             );
 
   Map<String, dynamic> toJson() => {
@@ -35,7 +39,8 @@ class Subject {
         'subjectName': subjectName,
         'subjectDesc': subjectDesc,
         'subjectPrice': subjectPrice,
-        'subjectSlot': subjectSlot
+        'subjectSlot': subjectSlot,
+        'tutorId': tutorId
         
       };
 }

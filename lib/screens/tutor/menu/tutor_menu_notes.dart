@@ -1,4 +1,6 @@
+import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_viewmodel_notes.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 class tutorNote extends StatefulWidget {
   @override
@@ -29,7 +31,11 @@ class _tutorNote extends State<tutorNote> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ViewModelBuilder<TutorNotesViewModel>.reactive(
+        disposeViewModel: false,
+        viewModelBuilder: () => TutorNotesViewModel(),
+        // onModelReady: (model) => model.initialise(),
+        builder: (context, model, child) => MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.lightBlue[50],
@@ -171,6 +177,7 @@ class _tutorNote extends State<tutorNote> {
           ],
         )),
       ),
+    )
     );
   }
 }

@@ -66,9 +66,9 @@ class _StudentProfileBodyState extends State<StudentProfileBody> {
                         color: Colors.blue,
                         image: const DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage('assets/images/logo_ezEdu.png'))),
+                            image: AssetImage('assets/images/user.png'))),
                   ),
-                  Positioned(
+                  /*Positioned(
                       bottom: 0,
                       right: 0,
                       child: Container(
@@ -88,7 +88,7 @@ class _StudentProfileBodyState extends State<StudentProfileBody> {
                           ),
                           onPressed: () {},
                         ),
-                      ))
+                      ))*/
                 ])),
                 const SizedBox(height: 15),
                 Text(

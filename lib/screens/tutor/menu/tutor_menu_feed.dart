@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_viewmodel_feed.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 class tutorFeed extends StatefulWidget {
   @override
@@ -45,9 +47,16 @@ class _tutorFeed extends State<tutorFeed> {
     '29/1/2022'
   ];
 
+  TextEditingController descController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ViewModelBuilder<TutorFeedViewModel>.reactive(
+        disposeViewModel: false,
+        viewModelBuilder: () => TutorFeedViewModel(),
+        // onModelReady: (model) => model.initialise(),
+        builder: (context, model, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           backgroundColor: Colors.lightBlue[50],
@@ -116,14 +125,16 @@ class _tutorFeed extends State<tutorFeed> {
                                         }).toList(),
                                       )),
                                 ]),
-                                Row(children: const <Widget>[
+                                Row(children: <Widget>[
                                   SizedBox(
                                       width: 120.0,
                                       child: Text(
                                         'Description',
                                         style: TextStyle(fontSize: 15),
                                       )),
-                                  SizedBox(width: 220, child: TextField()),
+                                  SizedBox(width: 220, child: TextFormField(
+                                    controller: descController,
+                                  )),
                                   /*
                                   Expanded(
                                       child: TextField(
@@ -202,7 +213,7 @@ class _tutorFeed extends State<tutorFeed> {
                                         }).toList(),
                                       )),
                                 ]),
-                                Row(children: const <Widget>[
+                                Row(children: <Widget>[
                                   SizedBox(
                                       width: 120.0,
                                       child: Text(
@@ -211,7 +222,8 @@ class _tutorFeed extends State<tutorFeed> {
                                       )),
                                   SizedBox(
                                       width: 220,
-                                      child: TextField(
+                                      child: TextFormField(
+                                          controller: priceController,
                                           keyboardType: TextInputType.number,
                                           style:
                                               TextStyle(color: Colors.black))),
@@ -283,6 +295,6 @@ class _tutorFeed extends State<tutorFeed> {
               ],
             ),
           ),
-        ));
+        )));
   }
 }

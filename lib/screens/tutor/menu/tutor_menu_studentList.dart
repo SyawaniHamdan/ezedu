@@ -1,4 +1,6 @@
+import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_viewmodel_studentList.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 import '../../../data/classes/stud.dart';
 import '../../../data/student_list.dart';
@@ -18,7 +20,11 @@ class _tutorStudentList extends State<tutorStudentList> {
   double padding = 10;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ViewModelBuilder<TutorStudentListViewModel>.reactive(
+        disposeViewModel: false,
+        viewModelBuilder: () => TutorStudentListViewModel(),
+        // onModelReady: (model) => model.initialise(),
+        builder: (context, model, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             backgroundColor: Colors.lightBlue[50],
@@ -28,7 +34,7 @@ class _tutorStudentList extends State<tutorStudentList> {
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: EdgeInsets.all(padding),
-                    child: Text(
+                    child: const Text(
                       "Student List",
                       style:
                           TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
@@ -64,6 +70,7 @@ class _tutorStudentList extends State<tutorStudentList> {
 
                 //FOR MAKING LINE BETWEEN LIST return ListView.separated(
               ],
-            )));
+            )))
+    );
   }
 }

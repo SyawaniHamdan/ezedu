@@ -2,8 +2,9 @@
 import 'package:ezedu/models/subject.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class TutorClass {
-  Future<Subject> getTutor({String? id = ""}) async {
+class TutorClassService {
+
+  Future<Subject> getClass({String? id = ""}) async {
     var document =
         await FirebaseFirestore.instance.collection('subjects').doc(id).get();
 
@@ -13,34 +14,23 @@ class TutorClass {
       subjectDesc: document.get("subjectDesc"),
       subjectPrice: document.get("subjectPrice"),
       subjectSlot: document.get("subjectSlot"),
+      tutorId: document.get("tutorId")
     );
 
     return subject;
   }
 
-  Future createTutor(Subject subject) async {
-    CollectionReference tutors =
+  Future createClass(Subject subject) async {
+    CollectionReference colClass =
         FirebaseFirestore.instance.collection('subjects');
 
-    tutors.doc(subject.id).set({
+    colClass.doc(subject.id).set({
       'id': subject.id,
       'subjectName': subject.subjectName,
       'subjectDesc': subject.subjectDesc,
       'subjectPrice': subject.subjectPrice,
       'subjectSlot': subject.subjectSlot,
-    });
-  }
-
-  Future updateTutor(Subject subject) async {
-    CollectionReference tutors =
-        FirebaseFirestore.instance.collection('subjects');
-
-    tutors.doc(subject.id).set({
-      'id': subject.id,
-      'subjectName': subject.subjectName,
-      'subjectDesc': subject.subjectDesc,
-      'subjectPrice': subject.subjectPrice,
-      'subjectSlot': subject.subjectSlot,
+      'tutorId' : subject.tutorId
     });
   }
 }
