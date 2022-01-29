@@ -9,8 +9,6 @@ import 'package:ezedu/screens/tutor/profile/widgets/tutor_profile_main_screen.da
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../data/student_list.dart';
-
 class tutorMainMenu extends StatefulWidget {
   const tutorMainMenu({Key? key}) : super(key: key);
 
@@ -66,6 +64,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                     ]),
                     actions: <Widget>[
                       IconButton(
+                          // ignore: prefer_const_constructors
                           icon: Icon(
                             Icons.logout,
                             color: Colors.white,
@@ -75,7 +74,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                           )
                     ],
                     flexibleSpace: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           gradient: LinearGradient(
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
