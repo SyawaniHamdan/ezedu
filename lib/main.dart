@@ -1,6 +1,7 @@
 //import 'package:ez_edu/templates/templateMenu.dart';
 import 'package:ezedu/routes.dart';
 import 'package:ezedu/screens/tutor/login/widgets/login_mvvm_view.dart';
+import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
 import 'package:ezedu/screens/tutor/register/widgets/tutor_register_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +26,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primaryColor,
       ),
-      initialRoute: '/',
-      onGenerateRoute: Routes.createRoute,
-      // home: TutorLoginView(),
+      // initialRoute: '/',
+      // onGenerateRoute: Routes.createRoute,
+      home: tutorMainMenu(),
     );
   }
 }
