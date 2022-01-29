@@ -5,6 +5,7 @@ class Student {
   String email;
   String address;
   String gender;
+  String level;
 
   Student(
       {this.id = '',
@@ -12,7 +13,8 @@ class Student {
       this.phone = '',
       this.email = '',
       this.address = '',
-      this.gender = ''});
+      this.gender = '',
+      this.level = ''});
 
   Student.copy(from)
       : this(
@@ -21,7 +23,8 @@ class Student {
             phone: from.phone,
             email: from.email,
             address: from.address,
-            gender: from.gender);
+            gender: from.gender,
+            level: from.level);
 
   Student.fromJson(Map<String, dynamic> json)
       : this(
@@ -30,7 +33,8 @@ class Student {
             phone: json['phone'],
             email: json['email'],
             address: json['address'],
-            gender: json['gender']);
+            gender: json['gender'],
+            level: json['level']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -39,5 +43,6 @@ class Student {
         'email': email,
         'address': address,
         'gender': gender,
+        'level': level
       };
 }

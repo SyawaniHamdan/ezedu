@@ -26,9 +26,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primaryColor,
       ),
-      // initialRoute: '/',
-      // onGenerateRoute: Routes.createRoute,
-      home: tutorMainMenu(),
+
+      initialRoute: '/',
+       onGenerateRoute: Routes.createRoute,
+      //home: TutorRegistration(),
     );
   }
 }
