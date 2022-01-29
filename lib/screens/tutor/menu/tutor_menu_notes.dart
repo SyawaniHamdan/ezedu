@@ -8,6 +8,24 @@ class tutorNote extends StatefulWidget {
 class _tutorNote extends State<tutorNote> {
   bool _customTileExpanded = false;
   double padding = 5;
+  final List<String> subject = [
+    'Biology',
+    'Biology',
+    'Biology',
+    'Chemistry',
+    'Biology',
+    'Chemistry',
+    'Chemistry'
+  ];
+  final List<String> note = [
+    'Biology',
+    'Biology',
+    'Biology',
+    'Chemistry',
+    'Biology',
+    'Chemistry',
+    'Chemistry'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +33,12 @@ class _tutorNote extends State<tutorNote> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.lightBlue[50],
-        body: Column(
-          children: [
+        body: SingleChildScrollView(
+            child: Column(
+          children: <Widget>[
+            Container(
+              height: 20.0,
+            ),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
@@ -27,8 +49,8 @@ class _tutorNote extends State<tutorNote> {
                 ),
               ),
             ),
-            Expanded(
-              child: new ListView(
+            Container(
+              child: ListView(
                 shrinkWrap: true,
                 padding: const EdgeInsets.all(8.0),
                 children: <Widget>[
@@ -37,7 +59,7 @@ class _tutorNote extends State<tutorNote> {
                           padding: const EdgeInsets.all(10.0),
                           child: Column(
                             children: <Widget>[
-                              TextField(
+                              const TextField(
                                 keyboardType: TextInputType.multiline,
                                 maxLines: null,
                                 minLines: 4,
@@ -48,6 +70,7 @@ class _tutorNote extends State<tutorNote> {
                               ),
                               Row(
                                 children: <Widget>[
+                                  /*
                                   IconButton(
                                       icon: Icon(Icons.insert_link),
                                       onPressed: () {}),
@@ -57,7 +80,8 @@ class _tutorNote extends State<tutorNote> {
                                   IconButton(
                                       icon: Icon(Icons.videocam),
                                       onPressed: () {}),
-                                  Expanded(
+                                      */
+                                  const Expanded(
                                     child: Text(''),
                                   ),
                                   ElevatedButton(
@@ -67,7 +91,7 @@ class _tutorNote extends State<tutorNote> {
                                 ],
                               ),
                               SizedBox(height: 30),
-                              Align(
+                              const Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   "Select class group",
@@ -94,16 +118,58 @@ class _tutorNote extends State<tutorNote> {
                                     }).toList(),
                                     onChanged: (_) {},
                                   )),
-                              SizedBox(height: 50),
+                              SizedBox(height: 20),
 
                               //add more stuff tu column
                             ],
                           )))
                 ],
               ),
-            )
+            ),
+            Container(
+              height: 20.0,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: padding),
+                child: const Text(
+                  "Sessions",
+                  style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            Container(
+                padding: const EdgeInsets.all(8.0),
+                //height: 1000,
+                child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: subject.length,
+                    itemBuilder: (BuildContext context, int index) => Card(
+                          child: ListTile(
+                            title: Column(children: <Widget>[
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(subject[index],
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20)),
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text('Note : ' + note[index]),
+                              ),
+                            ]),
+                            onTap: () {
+                              // print(days[index]);
+                            },
+                            // elevation: 50,
+                          ),
+                        )))
           ],
-        ),
+        )),
       ),
     );
   }
