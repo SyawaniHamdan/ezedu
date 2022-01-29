@@ -1,16 +1,14 @@
 import 'package:ezedu/app/locator.dart';
-import 'package:ezedu/models/tutor.dart';
-import 'package:ezedu/services/tutor_service.dart';
+import 'package:ezedu/models/student/student.dart';
+import 'package:ezedu/services/students/student_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
-import '../app/locator.dart';
-
-class AuthenticationService {
+class StudentAuthenticationService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
-  final TutorService _tutorService = locator<TutorService>();
+  final StudentService _studentService = locator<StudentService>();
 
-  var _currentTutor;
-  get currentTutor => _currentTutor;
+  var _currentStudent;
+  get currentStudent => _currentStudent;
 
   Future signInWithEmailAndPassword(
       {String email = "", String password = ""}) async {
@@ -18,7 +16,7 @@ class AuthenticationService {
       auth.UserCredential userCredential = await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
       auth.User? user = userCredential.user;
-      await _populateCurrentTutor(user);
+      await _populateCurrentStudent(user);
 
       return user != null;
     } catch (e) {
@@ -34,6 +32,7 @@ class AuthenticationService {
     String phone = "",
     String gender = "",
     String address = "",
+    String level = "",
     String type = "",
   }) async {
     try {
@@ -41,8 +40,8 @@ class AuthenticationService {
           .createUserWithEmailAndPassword(email: email, password: password);
       auth.User? user = userCredential.user;
 
-      if (type == "Tutor") {
-        _currentTutor = Tutor(
+      if (type == "Student") {
+        _currentStudent = Student(
           id: user?.uid,
           name: name,
           email: email,
@@ -51,7 +50,7 @@ class AuthenticationService {
           address: address,
         );
 
-        await _tutorService.createTutor(_currentTutor);
+        await _studentService.createStudent(_currentStudent);
       }
 
       return user != null;
@@ -71,10 +70,10 @@ class AuthenticationService {
     }
   }
 
-  Future<void> _populateCurrentTutor(auth.User? user) async {
+  Future<void> _populateCurrentStudent(auth.User? user) async {
     if (user != null) {
-      _currentTutor = await _tutorService.getTutor(id: user.uid);
+      _currentStudent = await _studentService.getStudent(id: user.uid);
     } else
-      _currentTutor = null;
+      _currentStudent = null;
   }
 }

@@ -1,10 +1,11 @@
 import 'package:ezedu/screens/guest/guest_menu.dart';
 import 'package:ezedu/screens/home/main/widgets/home_main_screen.dart';
-import 'package:ezedu/screens/student/login/student_login_main.dart';
+import 'package:ezedu/screens/student/login/students/student_login_view.dart';
 import 'package:ezedu/screens/student/tab/student_tab.dart';
-import 'package:ezedu/screens/tutor/login/widgets/tutor_login_main_screen.dart';
+import 'package:ezedu/screens/tutor/login/widgets/login_mvvm_view.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
 import 'package:flutter/material.dart';
+
 
 class Routes {
   static Route<dynamic>? createRoute(settings) {
@@ -14,14 +15,14 @@ class Routes {
 
       //Navigation for TUTOR================================================================
       case '/tutor':
-        return MaterialPageRoute(builder: (context) => TutorLoginMainScreen());
+        return MaterialPageRoute(builder: (context) => TutorLoginView());
       case '/tutor_home':
         return MaterialPageRoute(builder: (context) => const tutorMainMenu());
 
       //Navigation for STUDENTS==============================================================
       case '/student':
         return MaterialPageRoute(
-            builder: (context) => StudentLoginMainScreen());
+            builder: (context) => StudentLoginView());
       case '/student_tab':
         return MaterialPageRoute(builder: (context) => StudentTab());
       //Navigation for GUEST================================================================

@@ -1,48 +1,40 @@
-class Tutor {
+class Student {
   String? id;
   String name;
   String phone;
   String email;
   String address;
-  String proPictuce;
-  String qualification;
   String gender;
-  String about;
+  String level;
 
-  Tutor(
+  Student(
       {this.id = '',
       this.name = '',
       this.phone = '',
       this.email = '',
       this.address = '',
-      this.proPictuce = '',
-      this.qualification = '',
       this.gender = '',
-      this.about = ''});
+      this.level = ''});
 
-  Tutor.copy(from)
+  Student.copy(from)
       : this(
             id: from.id,
             name: from.name,
             phone: from.phone,
             email: from.email,
             address: from.address,
-            proPictuce: from.proPictuce,
-            qualification: from.qualification,
             gender: from.gender,
-            about: from.about);
+            level: from.level);
 
-  Tutor.fromJson(Map<String, dynamic> json)
+  Student.fromJson(Map<String, dynamic> json)
       : this(
             id: json['id'],
             name: json['name'],
             phone: json['phone'],
             email: json['email'],
             address: json['address'],
-            proPictuce: json['proPictuce'],
-            qualification: json['qualification'],
             gender: json['gender'],
-            about: json['about']);
+            level: json['level']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -50,9 +42,7 @@ class Tutor {
         'phone': phone,
         'email': email,
         'address': address,
-        'proPictuce': proPictuce,
-        'qualification': qualification,
         'gender': gender,
-        'about': about
+        'level': level
       };
 }
