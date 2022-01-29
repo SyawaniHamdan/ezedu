@@ -21,7 +21,7 @@ class StudentAuthenticationService {
       return user != null;
     } catch (e) {
       // return e.message;
-      return "Fail to login!";
+      return "Wrong Email/Password. Try Again.";
     }
   }
 
@@ -48,6 +48,7 @@ class StudentAuthenticationService {
           phone: phone,
           gender: gender,
           address: address,
+          level:level
         );
 
         await _studentService.createStudent(_currentStudent);

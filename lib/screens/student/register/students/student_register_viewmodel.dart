@@ -1,5 +1,5 @@
+import 'package:ezedu/screens/shared/toastAndDialog.dart';
 import 'package:ezedu/screens/student/login/students/student_login_view.dart';
-import 'package:ezedu/screens/student/tab/student_tab.dart';
 import 'package:ezedu/screens/viewmodel.dart';
 import 'package:ezedu/app/locator.dart';
 import 'package:ezedu/services/students/student_authentication_service.dart';
@@ -37,11 +37,13 @@ class StudentRegisterViewModel extends ViewModel {
 
     if (result is String) {
       print("Register Failed!");
+        awesomeSingleDialog(context, 'Alert!', result,
+          () => Navigator.of(context, rootNavigator: true).pop());
     } else {
       if (result != null) {
         await Future.delayed(const Duration(seconds: 1));
         await Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => StudentTab()));
+              MaterialPageRoute(builder: (context) => StudentLoginView()));
         print("Register Success!");
       } else {
         print("Register Failed!");

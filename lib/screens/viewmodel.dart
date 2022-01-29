@@ -1,5 +1,5 @@
 //JANGAN KACAU APE APE
-import 'package:ezedu/data/classes/student.dart';
+import 'package:ezedu/models/student.dart';
 import 'package:ezedu/models/tutor.dart';
 import 'package:ezedu/services/authentication_service.dart';
 import 'package:ezedu/services/students/student_authentication_service.dart';

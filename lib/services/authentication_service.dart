@@ -23,7 +23,7 @@ class AuthenticationService {
       return user != null;
     } catch (e) {
       // return e.message;
-      return "Fail to login!";
+      return "Wrong Email/Password. Try Again.";
     }
   }
 

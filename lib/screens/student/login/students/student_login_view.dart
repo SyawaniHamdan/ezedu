@@ -1,5 +1,4 @@
 import 'package:ezedu/screens/student/login/students/student_login_viewmodel.dart';
-import 'package:ezedu/screens/tutor/login/widgets/tutor_login_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 

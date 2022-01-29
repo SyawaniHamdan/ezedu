@@ -1,8 +1,10 @@
+import 'package:ezedu/models/student.dart';
 import 'package:ezedu/screens/student/chat/student_chat_main_screen.dart';
 import 'package:ezedu/screens/student/classes/student_classes_main_screen.dart';
 import 'package:ezedu/screens/student/home/student_home_main_screen.dart';
 import 'package:ezedu/screens/student/notes/student_notes_main_screen.dart';
 import 'package:ezedu/screens/student/payment/student_payment_main_screen.dart';
+import 'package:ezedu/screens/student/profile/student_profile_view.dart';
 import 'package:ezedu/screens/student/tab/student_tab_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -23,31 +25,42 @@ class _StudentTab extends State<StudentTab> {
     return ViewModelBuilder<StudentTabViewModel>.reactive(
         disposeViewModel: false,
         viewModelBuilder: () => StudentTabViewModel(),
-        builder: (context, model, child) => Scaffold(
-              body: MaterialApp(
-                debugShowCheckedModeBanner: false,
-                home: DefaultTabController(
-                  length: 5,
-                  child: Scaffold(
-                    appBar: AppBar(
-                      toolbarHeight: 80,
-                      title: Row(children: <Widget>[
-                        ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Image.network(
-                                'https://i.pinimg.com/474x/76/94/84/769484dafbe89bf2b8a22379658956c4.jpg',
-                                height: 50,
-                                width: 50)),
-                        const Padding(
-                          padding: EdgeInsets.only(
-                            left: 20,
-                          ),
-                          child: Text('Ali Baba'),
+        builder: (context, model, child) => MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: DefaultTabController(
+                length: 5,
+                child: Scaffold(
+                  appBar: AppBar(
+                    toolbarHeight: 80,
+                    title: Row(children: <Widget>[
+                      GestureDetector(
+                        onTap: () async {
+                          Student student =
+                              await model.getStudent(id: model.currentStudent.id);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  StudentProfileMainScreen(student: student),
+                            ),
+                          );
+                        }, // Image tapped
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50.0),
+                          child: Image.network(
+                              'https://i.pinimg.com/474x/76/94/84/769484dafbe89bf2b8a22379658956c4.jpg',
+                              height: 50,
+                              width: 50),
                         ),
-                      ]),
+                      ),
+                      const Text("  "),
+                      const Text("ALI BABA"),
+
+                      //STAR RATING FOR LECT
+                    ]),
                       actions: <Widget>[
                         IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.logout,
                             color: Colors.white,
                           ),
@@ -58,7 +71,7 @@ class _StudentTab extends State<StudentTab> {
                         )
                       ],
                       flexibleSpace: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             gradient: LinearGradient(
                                 begin: Alignment.topRight,
                                 end: Alignment.bottomLeft,
@@ -91,7 +104,7 @@ class _StudentTab extends State<StudentTab> {
                   ),
                 ),
               ),
-            ));
+            );
   }
   //Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

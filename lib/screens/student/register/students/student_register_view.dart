@@ -167,6 +167,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                             gender: gender,
                             address: address,
                             level: level,
+                            context: context,
                             type: "Student",
                           );
                         },

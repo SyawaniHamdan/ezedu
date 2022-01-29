@@ -150,6 +150,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             phone: phone,
                             gender: gender,
                             address: address,
+                            context:context,
                             type: "Tutor",
                           );
                         },
