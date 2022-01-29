@@ -100,7 +100,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                     children: [
                       tutorFeed(),
                       tutorNote(),
-                      _tutorStudentList(data: studentList),
+                      tutorStudentList(),
                       tutorChat(),
                       const TutorPaymentMainScreen(),
                     ],
