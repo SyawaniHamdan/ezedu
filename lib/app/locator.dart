@@ -8,6 +8,7 @@ import 'package:ezedu/screens/tutor/register/widgets/tutor_register_viewmodel.da
 import 'package:ezedu/services/authentication_service.dart';
 import 'package:ezedu/services/students/student_authentication_service.dart';
 import 'package:ezedu/services/students/student_service.dart';
+import 'package:ezedu/services/tutor_class.dart';
 import 'package:ezedu/services/tutor_service.dart';
 import 'package:get_it/get_it.dart';
 
@@ -19,6 +20,7 @@ void initializeLocator() {
   locator.registerLazySingleton(() => StudentAuthenticationService());
   locator.registerLazySingleton(() => TutorService());
   locator.registerLazySingleton(() => StudentService());
+  locator.registerLazySingleton(() => TutorClassService());
 
   // ViewModels
   locator.registerLazySingleton(() => TutorLoginViewModel());

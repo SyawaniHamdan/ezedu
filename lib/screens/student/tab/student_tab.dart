@@ -6,6 +6,7 @@ import 'package:ezedu/screens/student/notes/student_notes_main_screen.dart';
 import 'package:ezedu/screens/student/payment/student_payment_main_screen.dart';
 import 'package:ezedu/screens/student/profile/student_profile_view.dart';
 import 'package:ezedu/screens/student/tab/student_tab_viewmodel.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -19,6 +20,8 @@ class _StudentTab extends State<StudentTab> {
   static const leftColor = Color(0xFF647dee);
   static const secondaryColor =
       Color.fromARGB(255, 238, 255, 0); //INDICATOR COLOR
+      
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,7 @@ class _StudentTab extends State<StudentTab> {
                         ),
                       ),
                       const Text("  "),
-                      const Text("ALI BABA"),
+                      Text(model.currentStudent.name),
 
                       //STAR RATING FOR LECT
                     ]),
@@ -64,12 +67,18 @@ class _StudentTab extends State<StudentTab> {
                             Icons.logout,
                             color: Colors.white,
                           ),
-                          onPressed: () =>
-                              Navigator.of(context).popUntil((route) {
-                            return route.isFirst;
-                          }),
-                        )
-                      ],
+                          onPressed: ()async {
+                                        try {
+                                          model.signOut(context);
+                                          //myToast('Signed Out');
+                                          return await _auth.signOut();
+                                        } catch (e) {
+                                          print(e.toString());
+                                        }
+                                      }
+                          //  Navigator.of(context).popUntil((route) { return route.isFirst; }),
+                          )
+                    ],
                       flexibleSpace: Container(
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(

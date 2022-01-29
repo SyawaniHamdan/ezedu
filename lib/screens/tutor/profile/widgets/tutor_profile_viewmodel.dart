@@ -1,9 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:ezedu/app/locator.dart';
 import 'package:ezedu/models/tutor.dart';
-import 'package:ezedu/screens/tutor/login/widgets/login_mvvm_view.dart';
 import 'package:ezedu/services/authentication_service.dart';
 import 'package:ezedu/services/tutor_service.dart';
 import 'package:ezedu/screens/viewmodel.dart';
@@ -42,11 +40,5 @@ class TutorProfileViewModel extends ViewModel {
     currentTutor.about = about;
 
     setBusy(false);
-  }
-
-  void signOut(context) {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => TutorLoginView()),
-        (route) => false);
   }
 }
