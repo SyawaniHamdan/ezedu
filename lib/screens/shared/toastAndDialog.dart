@@ -99,7 +99,7 @@ Future awesomeSingleDialog(
               title,
               style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
             ),
-            content: const Text('Wrong Email/Password. Try Again.',
+            content: Text(desc,
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
             actions: [
               TextButton(

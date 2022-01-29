@@ -1,11 +1,12 @@
-import 'classes/student.dart';
+import 'classes/stud.dart';
 
-final studentList = <Student>[
-  Student(name: "Syawani"),
-  Student(name: "Fatimah"),
-  Student(name: "Amin"),
-  Student(name: "Julia"),
+final studentList = <Stud>[
+  Stud(name: "Syawani"),
+  Stud(name: "Fatimah"),
+  Stud(name: "Amin"),
+  Stud(name: "Julia"),
 ];
+
 
 
 /*

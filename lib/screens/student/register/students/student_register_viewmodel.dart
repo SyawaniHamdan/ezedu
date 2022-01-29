@@ -1,12 +1,13 @@
-import 'package:ezedu/screens/tutor/login/widgets/login_mvvm_view.dart';
-import 'package:ezedu/services/authentication_service.dart';
+import 'package:ezedu/screens/shared/toastAndDialog.dart';
+import 'package:ezedu/screens/student/login/students/student_login_view.dart';
 import 'package:ezedu/screens/viewmodel.dart';
 import 'package:ezedu/app/locator.dart';
+import 'package:ezedu/services/students/student_authentication_service.dart';
 import 'package:flutter/material.dart';
 
-class TutorRegisterViewModel extends ViewModel {
-  final AuthenticationService _authenticationService =
-      locator<AuthenticationService>();
+class StudentRegisterViewModel extends ViewModel {
+  final StudentAuthenticationService _authenticationService =
+      locator<StudentAuthenticationService>();
 
   Future signUp({
     String name = "",
@@ -15,6 +16,7 @@ class TutorRegisterViewModel extends ViewModel {
     String phone = "",
     String gender = "",
     String address = "",
+    String level = "",
     String type = "",
     context,
   }) async {
@@ -27,6 +29,7 @@ class TutorRegisterViewModel extends ViewModel {
       phone: phone,
       gender: gender,
       address: address,
+      level: level,
       type: type,
     );
 
@@ -34,11 +37,13 @@ class TutorRegisterViewModel extends ViewModel {
 
     if (result is String) {
       print("Register Failed!");
+        awesomeSingleDialog(context, 'Alert!', result,
+          () => Navigator.of(context, rootNavigator: true).pop());
     } else {
       if (result != null) {
         await Future.delayed(const Duration(seconds: 1));
         await Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => TutorLoginView()));
+              MaterialPageRoute(builder: (context) => StudentLoginView()));
         print("Register Success!");
       } else {
         print("Register Failed!");
@@ -47,6 +52,6 @@ class TutorRegisterViewModel extends ViewModel {
   }
   void navigateToSignIn(context) {
     Navigator.of(context, rootNavigator: true).pushReplacement(
-              MaterialPageRoute(builder: (context) => TutorLoginView()));
+              MaterialPageRoute(builder: (context) => StudentLoginView()));
   }
 }

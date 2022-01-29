@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
         primaryColor: primaryColor,
       ),
       initialRoute: '/',
-      onGenerateRoute: Routes.createRoute,
-      // home: TutorLoginView(),
+       onGenerateRoute: Routes.createRoute,
+      //home: TutorRegistration(),
     );
   }
 }

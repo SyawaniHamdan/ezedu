@@ -1,22 +1,24 @@
+import 'package:ezedu/screens/student/register/students/student_register_viewmodel.dart';
 import 'package:ezedu/screens/tutor/register/widgets/tutor_register_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class TutorRegistration extends StatefulWidget {
+class StudentRegistration extends StatefulWidget {
   static Route route() =>
-      MaterialPageRoute(builder: (context) => TutorRegistration());
+      MaterialPageRoute(builder: (context) => StudentRegistration());
 
   @override
-  State<TutorRegistration> createState() => _TutorRegistrationState();
+  State<StudentRegistration> createState() => _StudentRegistrationState();
 }
 
-class _TutorRegistrationState extends State<TutorRegistration> {
+class _StudentRegistrationState extends State<StudentRegistration> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController genderController = TextEditingController();
   TextEditingController addressController = TextEditingController();
+  TextEditingController levelController = TextEditingController();
 
   String _name = '';
   String _phone = '';
@@ -24,6 +26,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   String _password = '';
   String _gender = '';
   String _address = '';
+  String _level = '';
 
   get name => _name;
   set name(value) => setState(() => _name = value);
@@ -43,11 +46,14 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   get address => _address;
   set address(value) => setState(() => _address = value);
 
+  get level => _level;
+  set level(value) => setState(() => _level = value);
+
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<TutorRegisterViewModel>.reactive(
+    return ViewModelBuilder<StudentRegisterViewModel>.reactive(
         disposeViewModel: false,
-        viewModelBuilder: () => TutorRegisterViewModel(),
+        viewModelBuilder: () => StudentRegisterViewModel(),
         builder: (context, model, child) => Scaffold(
                 body: Center(
               child: SingleChildScrollView(
@@ -122,6 +128,16 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextFormField(
                           decoration:
+                              const InputDecoration(labelText: 'Form'),
+                          controller: levelController,
+                          onChanged: (value) => level = value),
+                    ),
+                    const SizedBox(height: 10.0),
+                    Container(
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.symmetric(horizontal: 40),
+                      child: TextFormField(
+                          decoration:
                               const InputDecoration(labelText: 'Gender'),
                           controller: genderController,
                           onChanged: (value) => gender = value),
@@ -150,8 +166,9 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             phone: phone,
                             gender: gender,
                             address: address,
-                            context:context,
-                            type: "Tutor",
+                            level: level,
+                            context: context,
+                            type: "Student",
                           );
                         },
                         style: ElevatedButton.styleFrom(

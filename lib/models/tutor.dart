@@ -27,7 +27,7 @@ class Tutor {
             phone: from.phone,
             email: from.email,
             address: from.address,
-            proPictuce: from.address,
+            proPictuce: from.proPictuce,
             qualification: from.qualification,
             gender: from.gender,
             about: from.about);
