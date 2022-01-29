@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
 import '../../../data/classes/student.dart';
+import '../../../data/student_list.dart';
 
-class tutorStudentList extends StatelessWidget {
-  tutorStudentList({required this.data});
-  final List<Student> data;
+class tutorStudentList extends StatefulWidget {
+  late List<Student> data;
+
+  @override
+  State<tutorStudentList> createState() => _tutorStudentList();
+}
+
+class _tutorStudentList extends State<tutorStudentList> {
+  // _tutorStudentList(this.data);
+  List<Student> data = studentList;
 
   static const primaryColor = Color.fromARGB(255, 202, 201, 201);
   double padding = 10;

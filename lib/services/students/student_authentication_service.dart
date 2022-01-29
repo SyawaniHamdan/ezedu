@@ -1,5 +1,5 @@
 import 'package:ezedu/app/locator.dart';
-import 'package:ezedu/models/student/student.dart';
+import 'package:ezedu/models/student.dart';
 import 'package:ezedu/services/students/student_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 

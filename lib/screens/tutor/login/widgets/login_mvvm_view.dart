@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class TutorLoginView extends StatefulWidget {
-  static Route route() => MaterialPageRoute(builder: (context) => TutorLoginView());
+  static Route route() =>
+      MaterialPageRoute(builder: (context) => TutorLoginView());
 
   @override
   State<TutorLoginView> createState() => TutorLoginViewState();
 }
 
 class TutorLoginViewState extends State<TutorLoginView> {
-
   String _email = '';
   String _password = '';
 
@@ -49,14 +49,15 @@ class TutorLoginViewState extends State<TutorLoginView> {
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextFormField(
                         decoration: const InputDecoration(labelText: "Email"),
-                         validator: (value) {
-                              if (value == null || value.isEmpty||
-                                  !value.contains('@') ||
-                                  !value.contains('.')) {
-                                return ('Please enter a valid email address');
-                              }
-                            },
-                            onChanged: (value) => email = value,
+                        validator: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              !value.contains('@') ||
+                              !value.contains('.')) {
+                            return ('Please enter a valid email address');
+                          }
+                        },
+                        onChanged: (value) => email = value,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -64,12 +65,13 @@ class TutorLoginViewState extends State<TutorLoginView> {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(horizontal: 40),
                       child: TextFormField(
-                        decoration: const InputDecoration(labelText: "Password"),
-                        obscureText: true,
-                        validator: (value) =>
-                                value==null || value.isEmpty ? 'Password is empty' : null,
-                        onChanged: (value) => password = value
-                      ),
+                          decoration:
+                              const InputDecoration(labelText: "Password"),
+                          obscureText: true,
+                          validator: (value) => value == null || value.isEmpty
+                              ? 'Password is empty'
+                              : null,
+                          onChanged: (value) => password = value),
                     ),
                     const SizedBox(height: 16),
                     Container(
@@ -78,11 +80,11 @@ class TutorLoginViewState extends State<TutorLoginView> {
                           horizontal: 40, vertical: 10),
                       child: ElevatedButton(
                         onPressed: () async {
-                                model.login(
-                                    email: email,
-                                    password: password,
-                                    context: context);
-                            },
+                          model.login(
+                              email: email,
+                              password: password,
+                              context: context);
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors
                               .cyan[800], //change background color of button
@@ -107,8 +109,8 @@ class TutorLoginViewState extends State<TutorLoginView> {
                     ),
                     Container(
                       alignment: Alignment.centerRight,
-                      margin:
-                          const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 10),
                       child: GestureDetector(
                         onTap: () {
                           model.navigateToRegister(context);

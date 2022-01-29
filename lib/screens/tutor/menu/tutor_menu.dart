@@ -3,13 +3,11 @@ import 'package:ezedu/screens/tutor/menu/tutor_menu_chatList.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_feed.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_notes.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_studentList.dart';
-import 'package:ezedu/screens/tutor/menu/tutor_menu_viewmodel.dart';
+import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_menu_viewmodel.dart';
 import 'package:ezedu/screens/tutor/payment/tutor_payment_main_screen.dart';
 import 'package:ezedu/screens/tutor/profile/widgets/tutor_profile_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../../data/student_list.dart';
 
 class tutorMainMenu extends StatefulWidget {
   const tutorMainMenu({Key? key}) : super(key: key);
@@ -66,18 +64,17 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                     ]),
                     actions: <Widget>[
                       IconButton(
-                        icon: Icon(
-                          Icons.logout,
-                          color: Colors.white,
-                        ),
-                        onPressed: () =>
-                            Navigator.of(context).popUntil((route) {
-                          return route.isFirst;
-                        }),
-                      )
+                          // ignore: prefer_const_constructors
+                          icon: Icon(
+                            Icons.logout,
+                            color: Colors.white,
+                          ),
+                          onPressed: () => Navigator.pushNamed(context, '/')
+                          //  Navigator.of(context).popUntil((route) { return route.isFirst; }),
+                          )
                     ],
                     flexibleSpace: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           gradient: LinearGradient(
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
@@ -102,7 +99,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                     children: [
                       tutorFeed(),
                       tutorNote(),
-                      tutorStudentList(data: studentList),
+                      tutorStudentList(),
                       tutorChat(),
                       const TutorPaymentMainScreen(),
                     ],

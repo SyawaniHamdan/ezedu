@@ -1,9 +1,9 @@
 //simpan data ke firestore
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ezedu/models/student.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StudentService {
-  Future<Student> getStudent({String? id = ""}) async {
+  Future<Student> getTutor({String? id = ""}) async {
     var document =
         await FirebaseFirestore.instance.collection('students').doc(id).get();
 
@@ -14,37 +14,34 @@ class StudentService {
       phone: document.get("phone"),
       gender: document.get("gender"),
       address: document.get("address"),
-      level: document.get("level"),
     );
 
     return student;
   }
 
-  Future createStudent(Student student) async {
-    CollectionReference students =
+  Future createTutor(Student student) async {
+    CollectionReference tutors =
         FirebaseFirestore.instance.collection('students');
 
-    students.doc(student.id).set({
+    tutors.doc(student.id).set({
       'id': student.id,
       'name': student.name,
       'email': student.email,
       'phone': student.phone,
       'gender': student.gender,
       'address': student.address,
-      'level': student.level,
     });
   }
 
-  Future updateStudent(Student student) async {
-    CollectionReference students =
+  Future updateTutor(Student student) async {
+    CollectionReference tutors =
         FirebaseFirestore.instance.collection('students');
 
-    students.doc(student.id).update({
+    tutors.doc(student.id).update({
       'name': student.name,
       'phone': student.phone,
       'gender': student.gender,
       'address': student.address,
-      'level': student.level,
     });
   }
 }
