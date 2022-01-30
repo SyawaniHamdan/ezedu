@@ -3,6 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ezedu/models/student.dart';
 
 class StudentService {
+  final CollectionReference _studentRef =
+      FirebaseFirestore.instance.collection('students');
+
   Future<Student> getStudent({String? id = ""}) async {
     var document =
         await FirebaseFirestore.instance.collection('students').doc(id).get();
@@ -18,6 +21,13 @@ class StudentService {
     );
 
     return student;
+  }
+
+  Future<List<Student>> getStudents() async {
+    QuerySnapshot snapshots = await _studentRef.get();
+    return snapshots.docs
+        .map((snapshot) => Student.fromSnapshot(snapshot))
+        .toList();
   }
 
   Future createStudent(Student student) async {

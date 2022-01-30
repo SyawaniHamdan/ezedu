@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Student {
   String? id;
   String name;
@@ -15,6 +17,12 @@ class Student {
       this.address = '',
       this.gender = '',
       this.level = ''});
+
+  factory Student.fromSnapshot(DocumentSnapshot snapshot) {
+    Map<String, dynamic> json = snapshot.data() as Map<String, dynamic>;
+    json['id'] = snapshot.id;
+    return Student.fromJson(json);
+  }
 
   Student.copy(from)
       : this(

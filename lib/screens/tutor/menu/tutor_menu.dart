@@ -75,7 +75,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                           onPressed: ()async {
                                         try {
                                           model.signOut(context);
-                                          //myToast('Signed Out');
+                                          myToast('Signed Out');
                                           return await _auth.signOut();
                                         } catch (e) {
                                           print(e.toString());

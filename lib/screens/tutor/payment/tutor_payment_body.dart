@@ -1,4 +1,5 @@
 import 'package:ezedu/screens/student/chat/student_chat_Viewmodel.dart';
+import 'package:ezedu/screens/tutor/payment/tutor_payment_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -19,12 +20,11 @@ class _TutorPaymentBody extends State<TutorPaymentBody> {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder.reactive(
+    return ViewModelBuilder<TutorPaymentViewModel>.reactive(
         disposeViewModel: false,
-        viewModelBuilder: () => StudentChatViewModel(),
-        builder: (context, model, child) => Scaffold(
-            backgroundColor: Colors.lightBlue[50],
-            body: Column(
+        viewModelBuilder: () => TutorPaymentViewModel(),
+        onModelReady: (model) => model.initialise(),
+        builder: (context, model, child) => Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -45,13 +45,12 @@ class _TutorPaymentBody extends State<TutorPaymentBody> {
                 ),
                 const SizedBox(height: 10.0),
                 const Padding(
-                    padding: EdgeInsets.only(
-                          right: 210),
+                    padding: EdgeInsets.only(right: 210),
                     child: Text('Latest Transaction',
                         style: TextStyle(
-                          color: Colors.blueAccent,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w800))),
+                            color: Colors.blueAccent,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w800))),
                 const SizedBox(height: 10.0),
                 Expanded(
                   child: ListView.builder(
@@ -65,7 +64,7 @@ class _TutorPaymentBody extends State<TutorPaymentBody> {
                             child: Card(
                                 child: Row(children: [
                               Container(
-                                padding: EdgeInsets.only(left: 20),
+                                padding: const EdgeInsets.only(left: 20),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(50.0),
                                   child: Image.network(
@@ -107,6 +106,6 @@ class _TutorPaymentBody extends State<TutorPaymentBody> {
                       }),
                 ),
               ],
-            )));
+            ));
   }
 }

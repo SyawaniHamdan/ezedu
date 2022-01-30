@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
 import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_viewmodel_feed.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -49,6 +50,7 @@ class _tutorFeed extends State<tutorFeed> {
 
   TextEditingController descController = TextEditingController();
   TextEditingController priceController = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -103,9 +105,9 @@ class _tutorFeed extends State<tutorFeed> {
                                           color: Color.fromARGB(
                                               255, 202, 202, 204),
                                         ),
-                                        onChanged: (String? newValue) {
+                                        onChanged: (String? newValues) {
                                           setState(() {
-                                            selectedSubject = newValue!;
+                                            selectedSubject = newValues!;
                                           });
                                         },
                                         items: <String>[
@@ -219,7 +221,9 @@ class _tutorFeed extends State<tutorFeed> {
                                       child: Text(
                                         'Price',
                                         style: TextStyle(fontSize: 15),
+                                        
                                       )),
+                                      
                                   SizedBox(
                                       width: 220,
                                       child: TextFormField(
@@ -235,6 +239,52 @@ class _tutorFeed extends State<tutorFeed> {
                     ],
                   ),
                 ),
+                 Container(
+                          //height: 50,
+                          padding: const EdgeInsets.only(bottom: 40),
+                          child: ElevatedButton(
+                              onPressed: () async {
+
+                                double newPrice = 0.00;
+                                if (priceController.text != '') {
+                                  var price = double.parse(priceController.text);
+                                  newPrice = price;
+                                }
+                                model.createSubject(
+                                  subjectName: selectedSubject,
+                                  subjectDesc: descController.text,
+                                  subjectPrice: newPrice,
+                                  subjectSlot: selectedSlot,
+                                  tutorId: model.currentTutor.id
+                                );
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Success add $selectedSubject at $selectedSlot.'),
+                                ),
+                              );
+
+                                await Future.delayed(Duration(seconds: 2));
+                                
+                                Navigator.of(context, rootNavigator: true)
+                              .pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (context) => tutorMainMenu()),
+                                  (route) => false);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 50),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                              ),
+                              child: const Text(
+                                'Add Subject',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    letterSpacing: 2.2,
+                                    color: Colors.black),
+                              ))),
                 Container(
                   height: 20.0,
                 ),
