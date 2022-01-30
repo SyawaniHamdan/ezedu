@@ -15,7 +15,7 @@ class TutorPaymentViewModel extends ViewModel {
 
   bool empty = false;
 
-  List<StudentSubject>? _studentsubjectList;
+  List<StudentSubject> _studentsubjectList = [];
   get studentsubjectList => _studentsubjectList;
 
   List<Subject>? _subjectList;
@@ -23,6 +23,8 @@ class TutorPaymentViewModel extends ViewModel {
 
   List<Student>? _studentList;
   get studentList => _studentList;
+
+  double totalBills = 0.00;
 
   Future initialise() async {
     setBusy(true);
@@ -33,6 +35,10 @@ class TutorPaymentViewModel extends ViewModel {
       List<StudentSubject>? ss = await _studentsubjectService
           .getStudentSubjectBySubjectId(subject.id!);
       _studentsubjectList = studentsubjectList + ss;
+    }
+
+    for (StudentSubject studentSubject in studentsubjectList) {
+      totalBills += studentSubject.price;
     }
 
     _studentList = await _studentService.getStudents();
