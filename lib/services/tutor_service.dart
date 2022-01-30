@@ -8,7 +8,7 @@ class TutorService {
         await FirebaseFirestore.instance.collection('tutors').doc(id).get();
 
     Tutor tutor = Tutor(
-      id: id,
+      id: document.id,
       name: document.get("name"),
       email: document.get("email"),
       phone: document.get("phone"),

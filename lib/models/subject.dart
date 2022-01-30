@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Subject {
   String? id;
   String subjectName;
   String subjectDesc;
-  String subjectPrice;
+  double subjectPrice;
   String subjectSlot;
   String tutorId;
 
@@ -10,10 +12,17 @@ class Subject {
       {this.id = '',
       this.subjectName = '',
       this.subjectDesc = '',
-      this.subjectPrice = '',
+      this.subjectPrice = 0.00,
       this.subjectSlot = '',
       this.tutorId = ''
       });
+
+  factory Subject.fromSnapshot(DocumentSnapshot snapshot) {
+    Map<String, dynamic> json = snapshot.data() as Map<String, dynamic>;
+    json['id'] = snapshot.id;
+    return Subject.fromJson(json);
+  }
+  
   Subject.copy(from)
       : this(
             id: from.id,

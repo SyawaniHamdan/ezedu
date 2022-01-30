@@ -2,14 +2,17 @@
 import 'package:ezedu/models/subject.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class TutorClassService {
+class SubjectService {
 
-  Future<Subject> getClass({String? id = ""}) async {
+  final CollectionReference _subjectRef =
+      FirebaseFirestore.instance.collection('subjects');
+
+  Future<Subject> getSubject({String? id = ""}) async {
     var document =
         await FirebaseFirestore.instance.collection('subjects').doc(id).get();
 
     Subject subject = Subject(
-      id: id,
+      id: document.id,
       subjectName: document.get("subjectName"),
       subjectDesc: document.get("subjectDesc"),
       subjectPrice: document.get("subjectPrice"),
@@ -20,12 +23,20 @@ class TutorClassService {
     return subject;
   }
 
-  Future createClass(Subject subject) async {
-    CollectionReference colClass =
-        FirebaseFirestore.instance.collection('subjects');
 
-    colClass.doc(subject.id).set({
-      'id': subject.id,
+  Future<List<Subject>> getSubjectByTutorId(String tutorId) async {
+
+    QuerySnapshot snapshots =
+        await _subjectRef.where('tutorId', isEqualTo: tutorId).get();
+     return snapshots.docs
+        .map((snapshot) => Subject.fromSnapshot(snapshot))
+        .toList();    
+  }
+  
+
+  Future createSubject(Subject subject) async {
+
+    _subjectRef.doc().set({
       'subjectName': subject.subjectName,
       'subjectDesc': subject.subjectDesc,
       'subjectPrice': subject.subjectPrice,
@@ -33,4 +44,9 @@ class TutorClassService {
       'tutorId' : subject.tutorId
     });
   }
+
+    Future deleteSubject(String id) async {
+    await _subjectRef.doc(id).delete();
+  }
+
 }
