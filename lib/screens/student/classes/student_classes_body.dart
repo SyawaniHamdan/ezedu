@@ -1,3 +1,5 @@
+import 'package:ezedu/models/studentsubject.dart';
+import 'package:ezedu/models/subject.dart';
 import 'package:ezedu/screens/student/classes/student_classes_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -9,7 +11,6 @@ class StudentClassesBody extends StatefulWidget {
 }
 
 class _StudentClassesBody extends State<StudentClassesBody> {
-
   // mock data
   final subject = ['Mathematics', 'Additional Mathematics', 'Biology'];
   final tutor = ['Lisa Manoban', 'Jennie Jane', 'Rose Khan'];
@@ -24,11 +25,11 @@ class _StudentClassesBody extends State<StudentClassesBody> {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder.reactive(
+    return ViewModelBuilder<StudentClassesViewModel>.reactive(
         disposeViewModel: false,
         viewModelBuilder: () => StudentClassesViewModel(),
         builder: (context, model, child) => Scaffold(
-          backgroundColor: Colors.lightBlue[50],
+            backgroundColor: Colors.lightBlue[50],
             body: Column(
               children: [
                 Align(
@@ -41,20 +42,29 @@ class _StudentClassesBody extends State<StudentClassesBody> {
                           TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
                     ),
                   ),
-                ), 
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ElevatedButton( onPressed: () {}, child: const Text("+ Enroll")), // button direct to UF002-11
-                    const Padding(padding:
-                              EdgeInsets.only(left: 0, top: 50, right: 30, bottom: 10),
-                              )
-                  ],  
+                    ElevatedButton(
+                        onPressed: () {},
+                        child: const Text(
+                            "+ Enroll")), // button direct to UF002-11
+                    const Padding(
+                      padding: EdgeInsets.only(
+                          left: 0, top: 50, right: 30, bottom: 10),
+                    )
+                  ],
                 ),
                 Expanded(
                   child: ListView.builder(
-                      itemCount: tutor.length,
+                      itemCount: model.studentsubjectList.length,
                       itemBuilder: (context, index) {
+                        StudentSubject studentSubject =
+                            model.studentsubjectList[index];
+                        Subject subject =
+                            model.getSubject(studentSubject.subjectId);
+
                         return Container(
                           //height: 50,
                           width: MediaQuery.of(context).size.width - 100,
@@ -62,11 +72,11 @@ class _StudentClassesBody extends State<StudentClassesBody> {
                               EdgeInsets.only(left: padding, right: padding),
                           child: Card(
                             child: ListTile(
-                              title: Text(subject[index]),
+                              title: Text(model.studentsubjectList),
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(tutor[index]),
+                                  Text('KIV'), // starting here belum siapp
                                   RatingBar.builder(
                                     initialRating: rating[index],
                                     minRating: 0,
@@ -100,7 +110,6 @@ class _StudentClassesBody extends State<StudentClassesBody> {
                       }),
                 ),
               ],
-            )
-        ));
+            )));
   }
 }
