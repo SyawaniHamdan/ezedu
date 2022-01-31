@@ -28,7 +28,7 @@ class StudentPaymentViewModel extends ViewModel {
 
   double totalBills = 0.0;
 
-  Future intialise() async {
+  Future initialise() async {
     setBusy(true);
 
     _subjectList = await _subjectService.getSubjectByTutorId(currentTutor.id!);

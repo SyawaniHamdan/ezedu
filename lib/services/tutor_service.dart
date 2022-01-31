@@ -3,6 +3,9 @@ import 'package:ezedu/models/tutor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TutorService {
+  final CollectionReference _tutorRef =
+      FirebaseFirestore.instance.collection('tutors');
+
   Future<Tutor> getTutor({String? id = ""}) async {
     var document =
         await FirebaseFirestore.instance.collection('tutors').doc(id).get();
@@ -20,6 +23,13 @@ class TutorService {
     );
 
     return tutor;
+  }
+
+  Future<List<Tutor>> getTutors() async {
+    QuerySnapshot snapshots = await _tutorRef.get();
+    return snapshots.docs
+        .map((snapshot) => Tutor.fromSnapshot(snapshot))
+        .toList();
   }
 
   Future createTutor(Tutor tutor) async {
