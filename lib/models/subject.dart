@@ -5,6 +5,7 @@ class Subject {
   String subjectName;
   String subjectDesc;
   double subjectPrice;
+  String subjectDate;
   String subjectSlot;
   String tutorId;
 
@@ -13,6 +14,7 @@ class Subject {
       this.subjectName = '',
       this.subjectDesc = '',
       this.subjectPrice = 0.00,
+      this.subjectDate = '',
       this.subjectSlot = '',
       this.tutorId = ''});
 
@@ -28,6 +30,7 @@ class Subject {
             subjectName: from.subjectName,
             subjectDesc: from.subjectDesc,
             subjectPrice: from.subjectPrice,
+            subjectDate: from.subjectDate,
             subjectSlot: from.subjectSlot,
             tutorId: from.tutorId);
 
@@ -37,6 +40,7 @@ class Subject {
             subjectName: json['subjectName'],
             subjectDesc: json['subjectDesc'],
             subjectPrice: double.parse(json['subjectPrice'].toString()),
+            subjectDate: json['subjectDate'],
             subjectSlot: json['subjectSlot'],
             tutorId: json['tutorId']);
 
@@ -45,6 +49,7 @@ class Subject {
         'subjectName': subjectName,
         'subjectDesc': subjectDesc,
         'subjectPrice': subjectPrice,
+        'subjectDate': subjectDate,
         'subjectSlot': subjectSlot,
         'tutorId': tutorId
       };
