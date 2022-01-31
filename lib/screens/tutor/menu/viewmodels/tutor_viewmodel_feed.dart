@@ -7,34 +7,44 @@ import 'package:ezedu/services/subject_service.dart';
 
 class TutorFeedViewModel extends ViewModel {
   final AuthenticationService _authenticationService =
-    locator<AuthenticationService>();
+      locator<AuthenticationService>();
 
   final SubjectService _subjectService = locator<SubjectService>();
-  
+
   bool empty = false;
 
-  late List<Subject> _subjectList;
+  List<Subject> _tutorsubjectList = [];
+  get tutorsubjectList => _tutorsubjectList;
+  List<Subject>? _subjectList;
   get subjectList => _subjectList;
-
   Future initialise() async {
     setBusy(true);
+    _subjectList = await _subjectService.getSubjectByTutorId(currentTutor.id!);
+    for (Subject subject in subjectList) {
+      List<Subject>? s =
+          await _subjectService.getSubjectByTutorId(currentTutor.id!);
+      _tutorsubjectList = s;
+    }
 
-    _subjectList =
-        await _subjectService.getSubjectByTutorId(currentTutor.id!);
-
-    if (_subjectList.length == 0) empty = true;
+    if (tutorsubjectList.length == 0) empty = true;
 
     setBusy(false);
   }
 
   void createSubject(
-      {subjectName, subjectDesc, subjectPrice, subjectSlot, tutorId}) async {
+      {subjectName,
+      subjectDesc,
+      subjectPrice,
+      subjectDate,
+      subjectSlot,
+      tutorId}) async {
     setBusy(true);
 
     Subject subject = Subject(
         subjectName: subjectName,
         subjectDesc: subjectDesc,
         subjectPrice: subjectPrice,
+        subjectDate: subjectDate,
         subjectSlot: subjectSlot,
         tutorId: tutorId);
 
@@ -42,5 +52,4 @@ class TutorFeedViewModel extends ViewModel {
 
     setBusy(false);
   }
-
 }

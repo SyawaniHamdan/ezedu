@@ -15,6 +15,7 @@ class SubjectService {
         subjectName: document.get("subjectName"),
         subjectDesc: document.get("subjectDesc"),
         subjectPrice: document.get("subjectPrice"),
+        subjectDate: document.get("subjectDate"),
         subjectSlot: document.get("subjectSlot"),
         tutorId: document.get("tutorId"));
 
@@ -41,6 +42,7 @@ class SubjectService {
       'subjectName': subject.subjectName,
       'subjectDesc': subject.subjectDesc,
       'subjectPrice': subject.subjectPrice,
+      'subjectDate': subject.subjectDate,
       'subjectSlot': subject.subjectSlot,
       'tutorId': subject.tutorId
     });
