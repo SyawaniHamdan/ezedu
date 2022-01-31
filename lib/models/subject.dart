@@ -14,15 +14,14 @@ class Subject {
       this.subjectDesc = '',
       this.subjectPrice = 0.00,
       this.subjectSlot = '',
-      this.tutorId = ''
-      });
+      this.tutorId = ''});
 
   factory Subject.fromSnapshot(DocumentSnapshot snapshot) {
     Map<String, dynamic> json = snapshot.data() as Map<String, dynamic>;
     json['id'] = snapshot.id;
     return Subject.fromJson(json);
   }
-  
+
   Subject.copy(from)
       : this(
             id: from.id,
@@ -30,18 +29,16 @@ class Subject {
             subjectDesc: from.subjectDesc,
             subjectPrice: from.subjectPrice,
             subjectSlot: from.subjectSlot,
-            tutorId: from.tutorId
-            );
+            tutorId: from.tutorId);
 
   Subject.fromJson(Map<String, dynamic> json)
       : this(
             id: json['id'],
             subjectName: json['subjectName'],
             subjectDesc: json['subjectDesc'],
-            subjectPrice: json['subjectPrice'],
+            subjectPrice: double.parse(json['subjectPrice'].toString()),
             subjectSlot: json['subjectSlot'],
-            tutorId: json['tutorId']
-            );
+            tutorId: json['tutorId']);
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -50,6 +47,5 @@ class Subject {
         'subjectPrice': subjectPrice,
         'subjectSlot': subjectSlot,
         'tutorId': tutorId
-        
       };
 }

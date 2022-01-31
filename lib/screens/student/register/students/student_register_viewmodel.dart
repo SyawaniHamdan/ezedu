@@ -37,21 +37,22 @@ class StudentRegisterViewModel extends ViewModel {
 
     if (result is String) {
       print("Register Failed!");
-        awesomeSingleDialog(context, 'Alert!', result,
+      awesomeSingleDialog(context, 'Alert!', result,
           () => Navigator.of(context, rootNavigator: true).pop());
     } else {
       if (result != null) {
         await Future.delayed(const Duration(seconds: 1));
         await Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => StudentLoginView()));
+            MaterialPageRoute(builder: (context) => StudentLoginView()));
         print("Register Success!");
       } else {
         print("Register Failed!");
       }
     }
   }
+
   void navigateToSignIn(context) {
     Navigator.of(context, rootNavigator: true).pushReplacement(
-              MaterialPageRoute(builder: (context) => StudentLoginView()));
+        MaterialPageRoute(builder: (context) => StudentLoginView()));
   }
 }

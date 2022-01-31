@@ -18,7 +18,7 @@ class _StudentPaymentBody extends State<StudentPaymentBody> {
     return ViewModelBuilder<StudentPaymentViewModel>.reactive(
         disposeViewModel: false,
         viewModelBuilder: () => StudentPaymentViewModel(),
-        onModelReady: (model) => model.intialise(),
+        onModelReady: (model) => model.initialise(),
         builder: (context, model, child) => model.isBusy
             ? Center(child: CircularProgressIndicator())
             : Column(
