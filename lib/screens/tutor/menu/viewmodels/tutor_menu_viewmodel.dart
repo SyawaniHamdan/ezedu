@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:ezedu/app/locator.dart';
 import 'package:ezedu/models/tutor.dart';
+import 'package:ezedu/screens/home/main/widgets/home_main_screen.dart';
 import 'package:ezedu/screens/tutor/login/widgets/login_mvvm_view.dart';
 import 'package:ezedu/screens/viewmodel.dart';
 import 'package:ezedu/services/tutor_service.dart';
@@ -21,7 +22,7 @@ class TutorMenuViewModel extends ViewModel {
 
   void signOut(context) {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => TutorLoginView()),
+        MaterialPageRoute(builder: (context) => HomeMainScreen()),
         (route) => false);
   }
 }

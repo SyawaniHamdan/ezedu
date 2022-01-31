@@ -1,6 +1,7 @@
 
 import 'package:ezedu/app/locator.dart';
 import 'package:ezedu/models/student.dart';
+import 'package:ezedu/screens/home/main/widgets/home_main_screen.dart';
 import 'package:ezedu/screens/student/login/students/student_login_view.dart';
 import 'package:ezedu/screens/viewmodel.dart';
 import 'package:ezedu/services/students/student_service.dart';
@@ -21,7 +22,7 @@ class StudentTabViewModel extends ViewModel{
 
   void signOut(context) {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => StudentLoginView()),
+        MaterialPageRoute(builder: (context) => HomeMainScreen()),
         (route) => false);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:ezedu/models/tutor.dart';
 import 'package:ezedu/screens/shared/toast.dart';
-import 'package:ezedu/screens/tutor/menu/tutor_menu_chatList.dart';
+import 'package:ezedu/screens/tutor/menu/tutor_subjectList.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_feed.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_notes.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu_studentList.dart';
@@ -111,7 +111,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                       tutorFeed(),
                       tutorNote(),
                       tutorStudentList(),
-                      tutorChat(),
+                      TutorSubjectList(),
                       const TutorPaymentMainScreen(),
                     ],
                   ),
