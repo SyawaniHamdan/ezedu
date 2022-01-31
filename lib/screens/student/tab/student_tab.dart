@@ -7,6 +7,7 @@ import 'package:ezedu/screens/student/payment/student_payment_main_screen.dart';
 import 'package:ezedu/screens/student/profile/student_profile_view.dart';
 import 'package:ezedu/screens/student/tab/student_tab_viewmodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ezedu/screens/shared/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -70,7 +71,7 @@ class _StudentTab extends State<StudentTab> {
                     onPressed: () async {
                       try {
                         model.signOut(context);
-                        //myToast('Signed Out');
+                        myToast('Signed Out');
                         return await _auth.signOut();
                       } catch (e) {
                         print(e.toString());

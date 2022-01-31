@@ -1,7 +1,6 @@
 import 'package:ezedu/models/student.dart';
 import 'package:ezedu/models/studentsubject.dart';
 import 'package:ezedu/models/subject.dart';
-import 'package:ezedu/screens/tutor/invoice/tutor_invoice_main_screen.dart';
 import 'package:ezedu/screens/tutor/payment/tutor_payment_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
