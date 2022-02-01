@@ -1,4 +1,5 @@
 import 'package:ezedu/models/subject.dart';
+import 'package:ezedu/screens/tutor/menu/tutor_menu_studentList.dart';
 import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_subjectList_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -53,66 +54,77 @@ class _TutorSubjectList extends State<TutorSubjectList> {
                                   itemBuilder: (context, index) {
                                     Subject subject = model.subjectList[index];
 
-                                    return Container(
-                                      //height: 50,
-                                      width: MediaQuery.of(context).size.width -
-                                          100,
-                                      padding: EdgeInsets.only(
-                                          left: padding, right: padding),
-                                      child: Card(
-                                        child: ListTile(
-                                          title: Text(
-                                            subject.subjectName,
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15.0,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          subtitle: Container(
-                                            padding: const EdgeInsets.only(
-                                                top: 4.0, bottom: 4.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'RM' +
-                                                      subject
-                                                          .subjectPrice
-                                                          .toString(),
-                                                  style: const TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 15.0,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                Text(
-                                                  subject.subjectDesc,
-                                                  style: const TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 13.5,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                                const SizedBox(height: 8.5),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      subject
-                                                          .subjectSlot,
-                                                      style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 13.0,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                    return InkWell(
+                                      child: Container(
+                                        //height: 50,
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                100,
+                                        padding: EdgeInsets.only(
+                                            left: padding, right: padding),
+                                        child: Card(
+                                          child: ListTile(
+                                            title: Text(
+                                              subject.subjectName,
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            subtitle: Container(
+                                              padding: const EdgeInsets.only(
+                                                  top: 4.0, bottom: 4.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'RM' +
+                                                        subject.subjectPrice
+                                                            .toString(),
+                                                    style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  Text(
+                                                    subject.subjectDesc,
+                                                    style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 13.5,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  const SizedBox(height: 8.5),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        subject.subjectSlot,
+                                                        style: const TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 13.0,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
+                                      onTap: () {
+                                        Navigator.of(context,
+                                                rootNavigator: true)
+                                            .push(MaterialPageRoute(
+                                                builder: (context) =>
+                                                    tutorStudentList(
+                                                        subjectId:
+                                                            subject.id!)));
+                                      },
                                     );
                                   },
                                 ),

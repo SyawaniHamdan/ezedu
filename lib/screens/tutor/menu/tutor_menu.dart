@@ -35,7 +35,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
         builder: (context, model, child) => MaterialApp(
               debugShowCheckedModeBanner: false,
               home: DefaultTabController(
-                length: 5,
+                length: 4,
                 child: Scaffold(
                   appBar: AppBar(
                     toolbarHeight: 80,
@@ -72,15 +72,15 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                             Icons.logout,
                             color: Colors.white,
                           ),
-                          onPressed: ()async {
-                                        try {
-                                          model.signOut(context);
-                                          myToast('Signed Out');
-                                          return await _auth.signOut();
-                                        } catch (e) {
-                                          print(e.toString());
-                                        }
-                                      }
+                          onPressed: () async {
+                            try {
+                              model.signOut(context);
+                              myToast('Signed Out');
+                              return await _auth.signOut();
+                            } catch (e) {
+                              print(e.toString());
+                            }
+                          }
                           //  Navigator.of(context).popUntil((route) { return route.isFirst; }),
                           )
                     ],
@@ -99,7 +99,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                       tabs: [
                         Tab(icon: Icon(Icons.dynamic_feed)),
                         Tab(icon: Icon(Icons.note)),
-                        Tab(icon: Icon(Icons.wc)),
+                        // Tab(icon: Icon(Icons.wc)),
                         Tab(icon: Icon(Icons.chat)),
                         Tab(icon: Icon(Icons.payments)),
                       ],
@@ -110,7 +110,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
                     children: [
                       tutorFeed(),
                       tutorNote(),
-                      tutorStudentList(),
+                      // tutorStudentList(),
                       TutorSubjectList(),
                       const TutorPaymentMainScreen(),
                     ],
