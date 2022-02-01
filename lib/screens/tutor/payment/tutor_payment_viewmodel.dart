@@ -33,7 +33,7 @@ class TutorPaymentViewModel extends ViewModel {
 
     for (Subject subject in subjectList) {
       List<StudentSubject>? ss = await _studentsubjectService
-          .getStudentSubjectBySubjectId(subject.id!);
+          .getCompletedStudentSubjectBySubjectId(subject.id!);
       _studentsubjectList = studentsubjectList + ss;
     }
 

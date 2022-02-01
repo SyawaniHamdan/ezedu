@@ -72,4 +72,7 @@ class StudentHomeViewModel extends ViewModel {
 
   Tutor getTutor(String tutorId) =>
       tutorList.firstWhere((tutor) => tutor.id == tutorId);
+
+  Subject getSubject(String subjectId) =>
+      subjectList.firstWhere((subject) => subject.id == subjectId);
 }
