@@ -36,6 +36,31 @@ class StudentSubjectService {
       String subjectId) async {
     QuerySnapshot snapshots =
         await _studentsubjectRef.where('subjectId', isEqualTo: subjectId).get();
+
+    return snapshots.docs
+        .map((snapshot) => StudentSubject.fromSnapshot(snapshot))
+        .toList();
+  }
+
+  Future<List<StudentSubject>> getCompletedStudentSubjectBySubjectId(
+      String subjectId) async {
+    QuerySnapshot snapshots = await _studentsubjectRef
+        .where('subjectId', isEqualTo: subjectId)
+        .where('status', isEqualTo: "complete")
+        .get();
+
+    return snapshots.docs
+        .map((snapshot) => StudentSubject.fromSnapshot(snapshot))
+        .toList();
+  }
+
+  Future<List<StudentSubject>> getApprovedStudentSubjectBySubjectId(
+      String subjectId) async {
+    QuerySnapshot snapshots = await _studentsubjectRef
+        .where('subjectId', isEqualTo: subjectId)
+        .where('status', isEqualTo: "approve")
+        .get();
+
     return snapshots.docs
         .map((snapshot) => StudentSubject.fromSnapshot(snapshot))
         .toList();
