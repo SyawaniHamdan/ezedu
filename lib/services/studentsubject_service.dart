@@ -51,6 +51,15 @@ class StudentSubjectService {
     });
   }
 
+  Future studentApproval({String? id, String? status}) async {
+    CollectionReference studentsubjects =
+        FirebaseFirestore.instance.collection('studentsubjects');
+
+    studentsubjects.doc(id).update({
+      'status': status,
+    });
+  }
+
   Future deleteSubject(String id) async {
     await _studentsubjectRef.doc(id).delete();
   }
