@@ -341,6 +341,7 @@ class _tutorFeed extends State<tutorFeed> {
                               return Card(
                                 child: ListTile(
                                   title: Column(children: <Widget>[
+                                    SizedBox(height: 10),
                                     Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(tutorSubject.subjectName,
@@ -366,8 +367,10 @@ class _tutorFeed extends State<tutorFeed> {
                                     Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text('Price  : RM' +
-                                          tutorSubject.subjectPrice.toString()),
+                                          tutorSubject.subjectPrice
+                                              .toStringAsFixed(2)),
                                     ),
+                                    SizedBox(height: 10),
                                   ]),
 
                                   trailing: IconButton(
