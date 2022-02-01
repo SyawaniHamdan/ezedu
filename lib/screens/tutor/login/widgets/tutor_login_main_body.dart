@@ -11,7 +11,7 @@ class TutorLoginMainBody extends StatelessWidget {
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: const Text(
-              "LOGIN",
+              "TUTOR LOGIN",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color(0XFF006064),
