@@ -1,4 +1,4 @@
-import 'package:ezedu/screens/guest/guest_menu.dart';
+import 'package:ezedu/screens/guest/guest_menu_mainscreen.dart';
 import 'package:ezedu/screens/home/main/widgets/home_main_screen.dart';
 import 'package:ezedu/screens/student/login/students/student_login_view.dart';
 import 'package:ezedu/screens/student/tab/student_tab.dart';
@@ -31,7 +31,7 @@ class Routes {
         return MaterialPageRoute(builder: (context) => StudentTab());
       //Navigation for GUEST================================================================
       case '/guest':
-        return MaterialPageRoute(builder: (context) => GuestMain());
+        return MaterialPageRoute(builder: (context) => GuestMainScreen());
     }
     return null;
   }
