@@ -31,6 +31,14 @@ class TutorFeedViewModel extends ViewModel {
     setBusy(false);
   }
 
+  void delete(String noteId) async {
+    setBusy(true);
+
+    await _subjectService.deleteSubject(noteId);
+
+    setBusy(false);
+  }
+
   void createSubject(
       {subjectName,
       subjectDesc,

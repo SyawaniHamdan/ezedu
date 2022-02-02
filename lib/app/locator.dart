@@ -7,6 +7,7 @@ import 'package:ezedu/screens/student/register/students/student_register_viewmod
 import 'package:ezedu/screens/tutor/login/widgets/tutor_login_viewmodel.dart';
 import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_viewmodel_feed.dart';
 import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_subjectList_viewmodel.dart';
+import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_viewmodel_notes.dart';
 import 'package:ezedu/screens/tutor/payment/tutor_payment_viewmodel.dart';
 import 'package:ezedu/screens/tutor/profile/widgets/tutor_profile_viewmodel.dart';
 import 'package:ezedu/screens/tutor/register/widgets/tutor_register_viewmodel.dart';
@@ -15,6 +16,7 @@ import 'package:ezedu/services/students/student_authentication_service.dart';
 import 'package:ezedu/services/students/student_service.dart';
 import 'package:ezedu/services/studentsubject_service.dart';
 import 'package:ezedu/services/subject_service.dart';
+import 'package:ezedu/services/tutor_note_service.dart';
 import 'package:ezedu/services/tutor_service.dart';
 import 'package:get_it/get_it.dart';
 
@@ -28,6 +30,7 @@ void initializeLocator() {
   locator.registerLazySingleton(() => StudentService());
   locator.registerLazySingleton(() => SubjectService());
   locator.registerLazySingleton(() => StudentSubjectService());
+  locator.registerLazySingleton(() => NoteService());
 
   // ViewModels
   locator.registerLazySingleton(() => TutorLoginViewModel());
@@ -36,6 +39,7 @@ void initializeLocator() {
   locator.registerLazySingleton(() => TutorFeedViewModel());
   locator.registerLazySingleton(() => TutorPaymentViewModel());
   locator.registerLazySingleton(() => TutorSubjectListViewModel());
+  locator.registerLazySingleton(() => TutorNotesViewModel());
 
   locator.registerLazySingleton(() => StudentLoginViewModel());
   locator.registerLazySingleton(() => StudentRegisterViewModel());

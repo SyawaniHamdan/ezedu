@@ -341,6 +341,7 @@ class _tutorFeed extends State<tutorFeed> {
                               return Card(
                                 child: ListTile(
                                   title: Column(children: <Widget>[
+                                    SizedBox(height: 10),
                                     Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(tutorSubject.subjectName,
@@ -366,15 +367,36 @@ class _tutorFeed extends State<tutorFeed> {
                                     Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text('Price  : RM' +
-                                          tutorSubject.subjectPrice.toString()),
+                                          tutorSubject.subjectPrice
+                                              .toStringAsFixed(2)),
                                     ),
+                                    SizedBox(height: 10),
                                   ]),
 
                                   trailing: IconButton(
                                     icon: const Icon(Icons.delete),
                                     tooltip: 'Delete Class',
-                                    onPressed: () {},
                                     color: Color.fromARGB(255, 255, 8, 8),
+                                    onPressed: () async {
+                                      model.delete(tutorSubject.id!);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content:
+                                              Text('Success deleted subject.'),
+                                        ),
+                                      );
+
+                                      await Future.delayed(
+                                          Duration(seconds: 2));
+
+                                      Navigator.of(context, rootNavigator: true)
+                                          .pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      tutorMainMenu()),
+                                              (route) => false);
+                                    },
                                   ),
                                   // elevation: 50,
                                 ),
