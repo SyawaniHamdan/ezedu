@@ -47,10 +47,12 @@ class _StudentPaymentBody extends State<StudentPaymentBody> {
                         itemBuilder: (context, index) {
                           StudentSubject studentSubject =
                               model.studentsubjectList[index];
-                          // Subject and tutpr takda connection lagi!!
-                          //Tutor tutor = model.getTutor(studentSubject.tutorId);
+
                           Subject subject =
                               model.getSubject(studentSubject.subjectId);
+                          //Tutor tutor =
+                           //   model.getTutor(subject.tutorId);
+
                           return Container(
                             //height: 50,
                             width: MediaQuery.of(context).size.width - 100,
@@ -62,12 +64,10 @@ class _StudentPaymentBody extends State<StudentPaymentBody> {
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                        'KIV'), // tutor and subject takda connection lagi
+                                    Text('null'), // tutor and subject takda connection lagi
                                     Text(
                                       "\nOutstanding: RM" +
-                                          studentSubject.price
-                                              .toStringAsFixed(2),
+                                          subject.subjectPrice.toStringAsFixed(2),
                                       style: const TextStyle(
                                           color: Colors.red,
                                           fontWeight: FontWeight.bold),
