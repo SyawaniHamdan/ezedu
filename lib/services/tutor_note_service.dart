@@ -35,6 +35,14 @@ class NoteService {
         .toList();
   }
 
+  Future<List<Notes>> getNotebySubjectId(String subjectId) async {
+    QuerySnapshot snapshots =
+        await _noteRef.where('subjectId', isEqualTo: subjectId).get();
+    return snapshots.docs
+        .map((snapshot) => Notes.fromSnapshot(snapshot))
+        .toList();
+  }
+
   Future updateNote(Notes note) async {
     CollectionReference notes = FirebaseFirestore.instance.collection('notes');
 

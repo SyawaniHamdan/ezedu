@@ -1,4 +1,9 @@
-import 'package:ezedu/screens/student/chat/student_chat_Viewmodel.dart';
+import 'package:ezedu/models/note.dart';
+import 'package:ezedu/models/student.dart';
+import 'package:ezedu/models/studentsubject.dart';
+import 'package:ezedu/models/subject.dart';
+import 'package:ezedu/models/tutor.dart';
+import 'package:ezedu/screens/student/notes/student_notes_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -10,51 +15,82 @@ class StudentNotesBody extends StatefulWidget {
 }
 
 class _StudentNotesBody extends State<StudentNotesBody> {
-
   // mock data
-  final subject = ['Mathematics', 'Additional Mathematics', 'Biology'];
+  final subject = ['Science', 'Additional Mathematics', 'Biology'];
   final tutor = ['Lisa Manoban', 'Jennie Jane', 'Rose Khan'];
 
   double padding = 10;
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder.reactive(
-        disposeViewModel: false,
-        viewModelBuilder: () => StudentChatViewModel(),
-        builder: (context, model, child) => Scaffold(
-          backgroundColor: Colors.lightBlue[50],
-          body: Column(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                      padding: EdgeInsets.all(padding),
-                      child: const Text("Lecture Notes",
-                        style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
-                      ),
+    return ViewModelBuilder<StudentNotesViewModel>.reactive(
+      disposeViewModel: false,
+      viewModelBuilder: () => StudentNotesViewModel(),
+      onModelReady: (model) => model.initialise(),
+      builder: (context, model, child) => model.isBusy
+          ? Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                //Card()
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.all(padding),
+                    child: const Text(
+                      "Lecture Notes",
+                      style:
+                          TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
                     ),
-              ),
-              Expanded(
-                  child: ListView.builder(  
-                      itemCount: tutor.length,
+                  ),
+                ),
+                Expanded(
+                    child: Card(
+                  child: ListView.builder(
+                      itemCount: model.studentsubjectList.length,
                       itemBuilder: (context, index) {
+                        StudentSubject studentSubject =
+                            model.studentsubjectList[index];
+                        Subject subject =
+                            model.getSubject(studentSubject.subjectId);
+                        //Tutor tutor =
+                        //    model.getTutor(subject.tutorId);
+                        Notes notes = model.notesList[index];
                         return Container(
-                          child: Column(
-                          children: <Widget>[
-                            ExpansionTile(
-                              backgroundColor: Colors.white,
-                              title: Text(tutor[index]),
-                              subtitle: Text(subject[index]),
-                              children: const [
-                                ListTile(title: Text("Notes Example"),)
-                              ],)
-                          ],
-                        )
-                        );
-                      })),
-            ],
-          ),
-        ));
+                            width: MediaQuery.of(context).size.width - 100,
+                            padding:
+                                EdgeInsets.only(left: padding, right: padding),
+                            child: Column(
+                              children: <Widget>[
+                                ExpansionTile(
+                                  backgroundColor: Colors.white,
+                                  title: Text(subject.subjectName),
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [ 
+                                      Text('nama tutor'),
+                                      Text(subject.subjectDate),
+                                    ],
+                                  ),   
+                                  children: [
+                                    ListTile(
+                                      title: Text(notes.noteDetail),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [ 
+                                          Text(subject.subjectSlot),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ));
+                      }),
+                )),
+              ],
+            ),
+    );
   }
 }

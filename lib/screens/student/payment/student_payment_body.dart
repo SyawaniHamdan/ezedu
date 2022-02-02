@@ -64,7 +64,7 @@ class _StudentPaymentBody extends State<StudentPaymentBody> {
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('null'), // tutor and subject takda connection lagi
+                                    Text('nama tutor'), // tutor and subject takda connection lagi
                                     Text(
                                       "\nOutstanding: RM" +
                                           subject.subjectPrice.toStringAsFixed(2),
