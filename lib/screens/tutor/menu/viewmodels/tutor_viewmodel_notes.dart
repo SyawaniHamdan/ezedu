@@ -31,6 +31,7 @@ class TutorNotesViewModel extends ViewModel {
     _subjectDetails = await _subjectService.getSubjects();
     // _noteDetails = await _noteService.getNotesAll();
     _subjectList = await _subjectService.getSubjectByTutorId(currentTutor.id!);
+    print(noteList);
 
     if (noteList.length == 0) empty = true;
 
@@ -41,11 +42,37 @@ class TutorNotesViewModel extends ViewModel {
       subjectDetails.firstWhere((subject) => subject.id == subjectId);
   Subject getSubjectTutorId(String tutorId) =>
       subjectList.firstWhere((subject) => currentTutor.id == tutorId);
+  Notes getNote(String noteId) =>
+      noteList.firstWhere((note) => note.id == noteId);
+  //Notes getNote(String noteId) =>
+  // noteList.firstWhere((note) => note.id == noteId);
 
   void delete(String noteId) async {
     setBusy(true);
 
     await _noteService.deleteNote(noteId);
+
+    setBusy(false);
+  }
+
+  void updateNotes(
+      {String? id = '',
+      String noteDetail = '',
+      String subjectId = '',
+      String tutorId = ''}) async {
+    setBusy(true);
+
+    Notes note = Notes(
+        id: id, noteDetail: noteDetail, subjectId: subjectId, tutorId: tutorId);
+
+    await _noteService.updateNote(note);
+/*
+    currentTutor.name = name;
+    currentTutor.phone = phone;
+    currentTutor.address = address;
+    currentTutor.qualification = qualification;
+    currentTutor.gender = gender;
+    currentTutor.about = about;*/
 
     setBusy(false);
   }

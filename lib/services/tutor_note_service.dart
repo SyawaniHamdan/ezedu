@@ -35,6 +35,16 @@ class NoteService {
         .toList();
   }
 
+  Future updateNote(Notes note) async {
+    CollectionReference notes = FirebaseFirestore.instance.collection('notes');
+
+    notes.doc(note.id).update({
+      'noteDetail': note.noteDetail,
+      'subjectId': note.subjectId,
+      'tutorId': note.tutorId,
+    });
+  }
+
   Future createNote(Notes note) async {
     _noteRef.doc().set({
       'noteDetail': note.noteDetail,

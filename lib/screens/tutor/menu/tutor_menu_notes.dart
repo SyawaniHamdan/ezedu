@@ -1,6 +1,7 @@
 import 'package:ezedu/models/note.dart';
 import 'package:ezedu/models/subject.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
+import 'package:ezedu/screens/tutor/menu/tutor_menui_noteUpdate.dart';
 import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_viewmodel_notes.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -162,8 +163,8 @@ class _tutorNote extends State<tutorNote> {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                   SnackBar(
-                                                    content: Text(
-                                                        'Success added note.'),
+                                                    content:
+                                                        Text('Note Added.'),
                                                   ),
                                                 );
 
@@ -288,32 +289,55 @@ class _tutorNote extends State<tutorNote> {
                                     SizedBox(height: 10),
                                   ]),
 
-                                  trailing: IconButton(
-                                    icon: const Icon(Icons.delete),
-                                    tooltip: 'Delete Class',
-                                    onPressed: () async {
-                                      // print(noteDetails.id);
-                                      model.delete(noteDetails.id!);
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                          content:
-                                              Text('Success deleted note.'),
-                                        ),
-                                      );
+                                  trailing: Column(children: <Widget>[
+                                    Expanded(
+                                        child: IconButton(
+                                      icon: const Icon(Icons.create),
+                                      tooltip: 'Update Class',
+                                      onPressed: () {
+                                        print("Sent " + noteDetails.noteDetail);
+                                        Navigator.of(context,
+                                                rootNavigator: true)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        tutorNoteUpdate(
+                                                            noteDetails.id!,
+                                                            noteDetails
+                                                                .noteDetail,
+                                                            index)),
+                                                (route) => false);
+                                      },
+                                      color: Color.fromARGB(255, 0, 68, 255),
+                                    )),
+                                    Expanded(
+                                        child: IconButton(
+                                      icon: const Icon(Icons.delete),
+                                      tooltip: 'Delete Class',
+                                      onPressed: () async {
+                                        // print(noteDetails.id);
+                                        model.delete(noteDetails.id!);
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            content: Text('Note Deleted.'),
+                                          ),
+                                        );
 
-                                      await Future.delayed(
-                                          Duration(seconds: 2));
+                                        await Future.delayed(
+                                            Duration(seconds: 2));
 
-                                      Navigator.of(context, rootNavigator: true)
-                                          .pushAndRemoveUntil(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      tutorMainMenu()),
-                                              (route) => false);
-                                    },
-                                    color: Color.fromARGB(255, 255, 8, 8),
-                                  ),
+                                        Navigator.of(context,
+                                                rootNavigator: true)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        tutorMainMenu()),
+                                                (route) => false);
+                                      },
+                                      color: Color.fromARGB(255, 255, 8, 8),
+                                    )),
+                                  ]),
                                   // elevation: 50,
                                 ),
                               );
