@@ -31,7 +31,8 @@ class StudentProfileBar extends StatelessWidget implements PreferredSizeWidget {
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [Colors.lightBlue.shade900, Colors.cyan.shade900]
+              colors: [Colors.purple.shade700,
+                                Colors.deepPurple.shade700]
               )
               ),
           )

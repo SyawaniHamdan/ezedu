@@ -13,7 +13,6 @@ class tutorStudentList extends StatefulWidget {
 }
 
 class _tutorStudentList extends State<tutorStudentList> {
-  static const primaryColor = Color.fromARGB(255, 202, 201, 201);
   double padding = 10;
   @override
   Widget build(BuildContext context) {
@@ -22,24 +21,39 @@ class _tutorStudentList extends State<tutorStudentList> {
         viewModelBuilder: () => TutorStudentListViewModel(),
         onModelReady: (model) => model.initialise(widget.subjectId!),
         builder: (context, model, child) => model.isBusy
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : MaterialApp(
                 debugShowCheckedModeBanner: false,
                 home: Scaffold(
                     backgroundColor: Colors.lightBlue[50],
+                    appBar: AppBar(
+                        backgroundColor: const Color(0xFF006064),
+                        centerTitle: true,
+                        title: const Text('Student List'),
+                        leading: IconButton(
+                          icon: const Icon(Icons.arrow_back_outlined),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const tutorMainMenu(),
+                              ),
+                            );
+                          },
+                        ),
+                        flexibleSpace: Container(
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
+                                  colors: [
+                                Colors.purple.shade700,
+                                Colors.deepPurple.shade700
+                              ])),
+                        )),
                     body: Column(
                       children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.all(padding),
-                            child: const Text(
-                              "Student List",
-                              style: TextStyle(
-                                  fontSize: 21, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
+                        const SizedBox(height: 15),
                         Expanded(
                           child: ListView.builder(
                             itemCount: model.studentsubjectList.length,
@@ -72,7 +86,38 @@ class _tutorStudentList extends State<tutorStudentList> {
                                   child: ListTile(
                                     title: Text(model
                                         .getStudent(studentSubject.studentId)
-                                        .name),
+                                        .name,
+                                        style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.w600),),
+                                        subtitle: Container(
+                                              padding: const EdgeInsets.only(
+                                                  top: 4.0, bottom: 4.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(model.getStudent(studentSubject.studentId).level,
+                                                    style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 13.5,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  Text(
+                                                    model.getStudent(studentSubject.studentId).phone,
+                                                    style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 13.5,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  const SizedBox(height: 8.5),
+                                                ],
+                                              ),
+                                            ),
                                     trailing: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: (studentSubject.status
@@ -91,7 +136,7 @@ class _tutorStudentList extends State<tutorStudentList> {
                                                       );
 
                                                       await Future.delayed(
-                                                          Duration(seconds: 1));
+                                                          const Duration(seconds: 1));
 
                                                       Navigator.of(context,
                                                               rootNavigator:
@@ -100,10 +145,10 @@ class _tutorStudentList extends State<tutorStudentList> {
                                                               MaterialPageRoute(
                                                                   builder:
                                                                       (context) =>
-                                                                          tutorMainMenu()),
+                                                                          const tutorMainMenu()),
                                                               (route) => false);
                                                     },
-                                                    child: Icon(Icons.check)),
+                                                    child:const Icon(Icons.check)),
                                                 const SizedBox(
                                                   width: 10.0,
                                                 ),
@@ -119,7 +164,7 @@ class _tutorStudentList extends State<tutorStudentList> {
                                                       );
 
                                                       await Future.delayed(
-                                                          Duration(seconds: 1));
+                                                          const Duration(seconds: 1));
 
                                                       Navigator.of(context,
                                                               rootNavigator:
@@ -128,10 +173,10 @@ class _tutorStudentList extends State<tutorStudentList> {
                                                               MaterialPageRoute(
                                                                   builder:
                                                                       (context) =>
-                                                                          tutorMainMenu()),
+                                                                        const tutorMainMenu()),
                                                               (route) => false);
                                                     },
-                                                    child: Icon(
+                                                    child: const Icon(
                                                         Icons.not_interested))
                                               ]
                                             : [
