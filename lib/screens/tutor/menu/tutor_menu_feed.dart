@@ -376,8 +376,27 @@ class _tutorFeed extends State<tutorFeed> {
                                   trailing: IconButton(
                                     icon: const Icon(Icons.delete),
                                     tooltip: 'Delete Class',
-                                    onPressed: () {},
                                     color: Color.fromARGB(255, 255, 8, 8),
+                                    onPressed: () async {
+                                      model.delete(tutorSubject.id!);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content:
+                                              Text('Success deleted subject.'),
+                                        ),
+                                      );
+
+                                      await Future.delayed(
+                                          Duration(seconds: 2));
+
+                                      Navigator.of(context, rootNavigator: true)
+                                          .pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      tutorMainMenu()),
+                                              (route) => false);
+                                    },
                                   ),
                                   // elevation: 50,
                                 ),

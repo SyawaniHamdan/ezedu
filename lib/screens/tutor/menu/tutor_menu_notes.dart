@@ -1,5 +1,6 @@
 import 'package:ezedu/models/note.dart';
 import 'package:ezedu/models/subject.dart';
+import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
 import 'package:ezedu/screens/tutor/menu/viewmodels/tutor_viewmodel_notes.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -10,27 +11,22 @@ class tutorNote extends StatefulWidget {
 }
 
 class _tutorNote extends State<tutorNote> {
-  bool _customTileExpanded = false;
+  int once = 0;
   double padding = 5;
-  String selectedSubject = "Choose";
-  final List<String> subject = [
-    'Biology',
-    'Biology',
-    'Biology',
-    'Chemistry',
-    'Biology',
-    'Chemistry',
-    'Chemistry'
+  String _selectedSubjectId = "none";
+
+  List<Subject> subjectStored = [
+    Subject(
+        id: "none",
+        subjectName: "Choose",
+        subjectDesc: "none",
+        subjectPrice: 0.0,
+        subjectDate: "-",
+        subjectSlot: "-",
+        tutorId: "none"),
   ];
-  final List<String> note = [
-    'Biology',
-    'Biology',
-    'Biology',
-    'Chemistry',
-    'Biology',
-    'Chemistry',
-    'Chemistry'
-  ];
+  List<Subject> uniqueStored = [];
+  TextEditingController noteController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<TutorNotesViewModel>.reactive(
@@ -38,7 +34,6 @@ class _tutorNote extends State<tutorNote> {
         viewModelBuilder: () => TutorNotesViewModel(),
         onModelReady: (model) {
           model.initialise();
-          // print(notes.noteDetail);
         },
         builder: (context, model, child) => MaterialApp(
               debugShowCheckedModeBanner: false,
@@ -63,7 +58,9 @@ class _tutorNote extends State<tutorNote> {
                     ),
                     Container(
                       child: ListView(
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
                         padding: const EdgeInsets.all(8.0),
                         children: <Widget>[
                           Card(
@@ -86,29 +83,28 @@ class _tutorNote extends State<tutorNote> {
                                       Align(
                                           alignment: Alignment.centerLeft,
                                           child: DropdownButton<String>(
-                                            value: selectedSubject,
-                                            underline: Container(
-                                              height: 2,
-                                              color: Color.fromARGB(
-                                                  255, 202, 202, 204),
-                                            ),
-                                            onChanged: (String? newValue) {
+                                            dropdownColor: const Color.fromARGB(
+                                                255, 211, 198, 247),
+                                            value: _selectedSubjectId,
+                                            onChanged:
+                                                (String? selectedSubject) {
                                               setState(() {
-                                                selectedSubject = newValue!;
+                                                _selectedSubjectId =
+                                                    selectedSubject!;
+
+                                                //print(_selectedSubjectId);
                                               });
                                             },
-                                            items: <String>[
-                                              'Choose',
-                                              '1 (8.00am - 9.50am)',
-                                              '2 (10.00am - 11.50am)',
-                                              '3 (12.00am - 1.50am)',
-                                              '4 (2.00am - 3.50am)',
-                                              '5 (3.00am - 4.50am)'
-                                            ].map<DropdownMenuItem<String>>(
-                                                (String value) {
+                                            items: subjectStored
+                                                .map<DropdownMenuItem<String>>(
+                                                    (Subject value) {
                                               return DropdownMenuItem<String>(
-                                                value: value,
-                                                child: Text(value),
+                                                value: value.id,
+                                                child: Text(value.subjectName +
+                                                    "\nDate:" +
+                                                    value.subjectDate +
+                                                    " | Slot:" +
+                                                    value.subjectSlot),
                                               );
                                             }).toList(),
                                           )),
@@ -126,15 +122,17 @@ class _tutorNote extends State<tutorNote> {
                                       ),
                                       SizedBox(height: 10),
 
-                                      const TextField(
+                                      TextFormField(
                                         keyboardType: TextInputType.multiline,
                                         maxLines: null,
                                         minLines: 4,
-                                        decoration: InputDecoration(
+                                        controller: noteController,
+                                        decoration: const InputDecoration(
                                           border: OutlineInputBorder(),
                                           hintText: 'Add new note..',
                                         ),
                                       ),
+                                      SizedBox(height: 15),
                                       Row(
                                         children: <Widget>[
                                           /*
@@ -148,17 +146,43 @@ class _tutorNote extends State<tutorNote> {
                                       icon: Icon(Icons.videocam),
                                       onPressed: () {}),
                                       */
-                                          const Expanded(
-                                            child: Text(''),
+                                          Expanded(
+                                            child: Text(" "),
                                           ),
                                           ElevatedButton(
-                                              onPressed: () {},
-                                              child: const Text("Send")),
-                                          SizedBox(width: 10),
+                                              onPressed: () async {
+                                                model.createNote(
+                                                    noteDetail:
+                                                        noteController.text,
+                                                    subjectId:
+                                                        _selectedSubjectId,
+                                                    tutorId:
+                                                        model.currentTutor.id);
+
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                        'Success added note.'),
+                                                  ),
+                                                );
+
+                                                await Future.delayed(
+                                                    Duration(seconds: 2));
+
+                                                Navigator.of(context,
+                                                        rootNavigator: true)
+                                                    .pushAndRemoveUntil(
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                tutorMainMenu()),
+                                                        (route) => false);
+                                              },
+                                              child: const Text("Add")),
                                         ],
                                       ),
 
-                                      SizedBox(height: 20),
+                                      SizedBox(height: 5),
 
                                       //add more stuff tu column
                                     ],
@@ -181,6 +205,34 @@ class _tutorNote extends State<tutorNote> {
                       ),
                     ),
                     Container(
+                        height: 0.1,
+                        child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: (model.noteList == null)
+                                ? 0
+                                : model.subjectList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              Subject subject = model.subjectList[index];
+                              if (once < model.subjectList.length) {
+                                int duplicate = 0;
+                                for (int i = 0; i < subjectStored.length; i++) {
+                                  // print(
+                                  //    "${subjectStored[i].id} and ${subject.id}");
+                                  if (subjectStored[i].id == subject.id) {
+                                    duplicate++;
+                                  }
+                                }
+                                if (duplicate == 0) {
+                                  subjectStored.add(subject);
+                                }
+
+                                once++;
+                              }
+                              return Text(" ");
+                            })),
+                    Container(
                         padding: const EdgeInsets.all(8.0),
                         //height: 1000,
                         child: ListView.builder(
@@ -192,9 +244,9 @@ class _tutorNote extends State<tutorNote> {
                                 : model.noteList.length,
                             itemBuilder: (BuildContext context, int index) {
                               Notes noteDetails = model.noteList[index];
+
                               Subject subject =
                                   model.getSubject(noteDetails.subjectId);
-
                               return Card(
                                 child: ListTile(
                                   title: Column(children: <Widget>[
@@ -239,7 +291,27 @@ class _tutorNote extends State<tutorNote> {
                                   trailing: IconButton(
                                     icon: const Icon(Icons.delete),
                                     tooltip: 'Delete Class',
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      // print(noteDetails.id);
+                                      model.delete(noteDetails.id!);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content:
+                                              Text('Success deleted note.'),
+                                        ),
+                                      );
+
+                                      await Future.delayed(
+                                          Duration(seconds: 2));
+
+                                      Navigator.of(context, rootNavigator: true)
+                                          .pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      tutorMainMenu()),
+                                              (route) => false);
+                                    },
                                     color: Color.fromARGB(255, 255, 8, 8),
                                   ),
                                   // elevation: 50,

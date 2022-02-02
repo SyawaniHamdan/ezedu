@@ -35,20 +35,11 @@ class NoteService {
         .toList();
   }
 
-/*rerturn subject lsit if the id is same as the one in note
-  Future<List<Notes>> getSubjectListBySubjectId(String subjectId) async {
-    QuerySnapshot snapshots =
-        await _noteRef.where('subjectId', isEqualTo: subjectId).get();
-    return snapshots.docs
-        .map((snapshot) => Notes.fromSnapshot(snapshot))
-        .toList();
-  }*/
-
-  Future createNote(Notes subject) async {
+  Future createNote(Notes note) async {
     _noteRef.doc().set({
-      'subjectName': subject.noteDetail,
-      'subjectDesc': subject.subjectId,
-      'tutorId': subject.tutorId,
+      'noteDetail': note.noteDetail,
+      'subjectId': note.subjectId,
+      'tutorId': note.tutorId,
     });
   }
 
