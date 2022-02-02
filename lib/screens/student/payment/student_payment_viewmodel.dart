@@ -17,43 +17,42 @@ class StudentPaymentViewModel extends ViewModel {
 
   bool empty = false;
 
-  List<StudentSubject>? _studentsubjectList = [];
+  List<StudentSubject> _studentsubjectList = [];
   get studentsubjectList => _studentsubjectList;
 
   List<Subject>? _subjectList;
   get subjectList => _subjectList;
 
-  List<Tutor>? _tutorList;
-  get tutorList => _tutorList;
+  //List<Tutor>? _tutorList;
+  //get tutorList => _tutorList;
 
   double totalBills = 0.0;
 
   Future initialise() async {
     setBusy(true);
 
-    _subjectList = await _subjectService.getSubjectByTutorId(currentTutor.id!);
+    _subjectList = await _subjectService.getSubjects();
+   // _tutorList = await _tutorService.getTutors();
 
     for (Subject subject in subjectList) {
       List<StudentSubject>? ss = await _studentsubjectService
-          .getStudentSubjectBySubjectId(subject.id!);
+          .getApprovedStudentSubjectBySubjectId(subject.id!);
       _studentsubjectList = studentsubjectList + ss;
     }
 
     for (StudentSubject studentSubject in studentsubjectList) {
-      totalBills += studentSubject.price;
+      totalBills += getSubject(studentSubject.subjectId).subjectPrice;
     }
-
-    // error here ??
-    //_tutorList = await _tutorService.getTutor();
 
     if (studentsubjectList.length == 0) empty = true;
 
     setBusy(false);
+   
   }
 
   Subject getSubject(String subjectId) =>
       subjectList.firstWhere((subject) => subject.id == subjectId);
 
-  Tutor getTutor(String tutorId) =>
-      tutorList.firstWhere((tutor) => tutor.id == tutorId);
+  //Tutor getTutor(String? tutorId) =>
+  //    tutorList.firstWhere((tutor) => tutor.id == tutorId);
 }

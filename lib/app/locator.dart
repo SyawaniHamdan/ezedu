@@ -1,6 +1,7 @@
 import 'package:ezedu/screens/guest/guest_menu_viewmodel.dart';
 import 'package:ezedu/screens/student/classes/student_classes_viewmodel.dart';
 import 'package:ezedu/screens/student/login/students/student_login_viewmodel.dart';
+import 'package:ezedu/screens/student/notes/student_notes_viewmodel.dart';
 import 'package:ezedu/screens/student/payment/student_payment_viewmodel.dart';
 import 'package:ezedu/screens/student/profile/student_profile_viewmodel.dart';
 import 'package:ezedu/screens/student/register/students/student_register_viewmodel.dart';
@@ -46,6 +47,7 @@ void initializeLocator() {
   locator.registerLazySingleton(() => StudentProfileViewModel());
   locator.registerLazySingleton(() => StudentPaymentViewModel());
   locator.registerLazySingleton(() => StudentClassesViewModel());
+  locator.registerLazySingleton(() => StudentNotesViewModel());
 
   locator.registerLazySingleton(() => GuestMenuViewModel());
 }
