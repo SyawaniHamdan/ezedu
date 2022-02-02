@@ -29,9 +29,25 @@ class SubjectService {
         .toList();
   }
 
+  Future<List<Subject>> getSubjectById(String subjectId) async {
+    QuerySnapshot snapshots =
+        await _subjectRef.where('id', isEqualTo: subjectId).get();
+    return snapshots.docs
+        .map((snapshot) => Subject.fromSnapshot(snapshot))
+        .toList();
+  }
+
   Future<List<Subject>> getSubjectByTutorId(String tutorId) async {
     QuerySnapshot snapshots =
         await _subjectRef.where('tutorId', isEqualTo: tutorId).get();
+    return snapshots.docs
+        .map((snapshot) => Subject.fromSnapshot(snapshot))
+        .toList();
+  }
+
+  Future<List<Subject>> getSubjectByNoteSubjectId(String noteSubjectId) async {
+    QuerySnapshot snapshots =
+        await _subjectRef.where('id', isEqualTo: noteSubjectId).get();
     return snapshots.docs
         .map((snapshot) => Subject.fromSnapshot(snapshot))
         .toList();

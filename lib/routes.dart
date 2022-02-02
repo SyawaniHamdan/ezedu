@@ -5,8 +5,8 @@ import 'package:ezedu/screens/student/tab/student_tab.dart';
 import 'package:ezedu/screens/tutor/login/widgets/login_mvvm_view.dart';
 import 'package:ezedu/screens/tutor/login/widgets/tutor_login_main_screen.dart';
 import 'package:ezedu/screens/tutor/menu/tutor_menu.dart';
+import 'package:ezedu/screens/tutor/menu/tutor_menui_noteUpdate.dart';
 import 'package:flutter/material.dart';
-
 
 class Routes {
   static Route<dynamic>? createRoute(settings) {
@@ -17,16 +17,14 @@ class Routes {
       //Navigation for TUTOR================================================================
       case '/tutor':
         return MaterialPageRoute(builder: (context) => TutorLoginMainScreen());
-        case '/tutor_login':
+      case '/tutor_login':
         return MaterialPageRoute(builder: (context) => TutorLoginView());
       case '/tutor_home':
         return MaterialPageRoute(builder: (context) => const tutorMainMenu());
 
-
       //Navigation for STUDENTS==============================================================
       case '/student':
-        return MaterialPageRoute(
-            builder: (context) => StudentLoginView());
+        return MaterialPageRoute(builder: (context) => StudentLoginView());
       case '/student_tab':
         return MaterialPageRoute(builder: (context) => StudentTab());
       //Navigation for GUEST================================================================
