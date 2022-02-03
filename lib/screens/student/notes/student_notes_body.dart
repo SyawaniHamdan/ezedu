@@ -1,8 +1,6 @@
 import 'package:ezedu/models/note.dart';
-import 'package:ezedu/models/student.dart';
 import 'package:ezedu/models/studentsubject.dart';
 import 'package:ezedu/models/subject.dart';
-import 'package:ezedu/models/tutor.dart';
 import 'package:ezedu/screens/student/notes/student_notes_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -28,8 +26,17 @@ class _StudentNotesBody extends State<StudentNotesBody> {
       viewModelBuilder: () => StudentNotesViewModel(),
       onModelReady: (model) => model.initialise(),
       builder: (context, model, child) => model.isBusy
-          ? Center(child: CircularProgressIndicator())
-          : Column(
+                    ? const Center(child: CircularProgressIndicator())
+                    : model.empty
+                        ? Column(
+                            children: const [
+                              Expanded(
+                                  child: Center(
+                                      child: Text(
+                                          'No Notes For Student'))),
+                            ],
+                          )
+                        : Column(
               children: [
                 //Card()
                 Align(

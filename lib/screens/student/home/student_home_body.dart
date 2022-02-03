@@ -32,8 +32,17 @@ class _StudentHomeBody extends State<StudentHomeBody> {
         viewModelBuilder: () => StudentHomeViewModel(),
         onModelReady: (model) => model.initialise(),
         builder: (context, model, child) => model.isBusy
-            ? Center(child: CircularProgressIndicator())
-            : Scaffold(
+                    ? const Center(child: CircularProgressIndicator())
+                    : model.empty
+                        ? Column(
+                            children: const [
+                              Expanded(
+                                  child: Center(
+                                      child: Text(
+                                          'No Subject Offered To Student'))),
+                            ],
+                          )
+                        : Scaffold(
                 //appbar
                 backgroundColor: Colors.lightBlue[50],
                 body: Column(
@@ -83,6 +92,9 @@ class _StudentHomeBody extends State<StudentHomeBody> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
+                                      Text(subject.subjectDate),
+                                      Text(subject.subjectSlot),
+                                      Text("RM " + subject.subjectPrice.toString()),
                                       Text(tutor.name),
                                       // RatingBar.builder(
                                       //   initialRating: rating[index],
@@ -121,7 +133,7 @@ class _StudentHomeBody extends State<StudentHomeBody> {
                                               );
 
                                               await Future.delayed(
-                                                  Duration(seconds: 1));
+                                                  const Duration(seconds: 1));
 
                                               Navigator.of(context,
                                                       rootNavigator: true)

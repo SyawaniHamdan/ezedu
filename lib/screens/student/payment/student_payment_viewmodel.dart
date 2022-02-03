@@ -17,14 +17,14 @@ class StudentPaymentViewModel extends ViewModel {
 
   bool empty = false;
 
-  List<StudentSubject> _studentsubjectList = [];
+  List<StudentSubject>? _studentsubjectList;
   get studentsubjectList => _studentsubjectList;
 
   List<Subject>? _subjectList;
   get subjectList => _subjectList;
 
-  //List<Tutor>? _tutorList;
-  //get tutorList => _tutorList;
+  List<Tutor>? _tutorList;
+  get tutorList => _tutorList;
 
   double totalBills = 0.0;
 
@@ -32,27 +32,47 @@ class StudentPaymentViewModel extends ViewModel {
     setBusy(true);
 
     _subjectList = await _subjectService.getSubjects();
-   // _tutorList = await _tutorService.getTutors();
-
-    for (Subject subject in subjectList) {
-      List<StudentSubject>? ss = await _studentsubjectService
-          .getApprovedStudentSubjectBySubjectId(subject.id!);
-      _studentsubjectList = studentsubjectList + ss;
-    }
+    _tutorList = await _tutorService.getTutors();
+    _studentsubjectList = await _studentsubjectService
+        .getApprovedStudentSubjectByStudentId(currentStudent.id!);
 
     for (StudentSubject studentSubject in studentsubjectList) {
       totalBills += getSubject(studentSubject.subjectId).subjectPrice;
     }
 
     if (studentsubjectList.length == 0) empty = true;
+    setBusy(false);
+  }
+
+  Future studentPayment({
+    String id = "",
+    String status = "",
+    String date = "",
+    double price = 0,
+  }) async {
+    setBusy(true);
+
+    await _studentsubjectService.studentPayment(
+        id: id, status: status, date: date, price: price);
 
     setBusy(false);
-   
+  }
+
+  String getPaymentSubject(String subjectId) {
+    String returnTxt = "pay";
+
+    for (StudentSubject ss in studentsubjectList) {
+      if (ss.subjectId == subjectId) {
+        returnTxt = ss.status;
+      }
+    }
+
+    return returnTxt;
   }
 
   Subject getSubject(String subjectId) =>
       subjectList.firstWhere((subject) => subject.id == subjectId);
 
-  //Tutor getTutor(String? tutorId) =>
-  //    tutorList.firstWhere((tutor) => tutor.id == tutorId);
+  Tutor getTutor(String tutorId) =>
+      tutorList.firstWhere((tutor) => tutor.id == tutorId);
 }
