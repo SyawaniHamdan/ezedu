@@ -1,6 +1,7 @@
 import 'package:ezedu/models/note.dart';
 import 'package:ezedu/models/studentsubject.dart';
 import 'package:ezedu/models/subject.dart';
+import 'package:ezedu/models/tutor.dart';
 import 'package:ezedu/screens/student/notes/student_notes_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -59,8 +60,7 @@ class _StudentNotesBody extends State<StudentNotesBody> {
                             model.studentsubjectList[index];
                         Subject subject =
                             model.getSubject(studentSubject.subjectId);
-                        //Tutor tutor =
-                        //    model.getTutor(subject.tutorId);
+                        Tutor tutor = model.getTutor(subject.tutorId);
                         Notes notes = model.notesList[index];
                         return Container(
                             width: MediaQuery.of(context).size.width - 100,
@@ -75,7 +75,7 @@ class _StudentNotesBody extends State<StudentNotesBody> {
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
                                     children: [ 
-                                      Text('nama tutor'),
+                                      Text(tutor.name),
                                       Text(subject.subjectDate),
                                     ],
                                   ),   
