@@ -54,10 +54,10 @@ class StudentSubjectService {
         .toList();
   }
 
-  Future<List<StudentSubject>> getApprovedStudentSubjectBySubjectId(
-      String subjectId) async {
+  Future<List<StudentSubject>> getApprovedStudentSubjectByStudentId(
+      String studentId) async {
     QuerySnapshot snapshots = await _studentsubjectRef
-        .where('subjectId', isEqualTo: subjectId)
+        .where('studentId', isEqualTo: studentId)
         .where('status', isEqualTo: "approve")
         .get();
 
@@ -83,6 +83,16 @@ class StudentSubjectService {
     studentsubjects.doc(id).update({
       'status': status,
     });
+  }
+
+  Future studentPayment(
+      {String? id, String? status, String? date, double? price}) async {
+    CollectionReference studentsubjects =
+        FirebaseFirestore.instance.collection('studentsubjects');
+
+    studentsubjects
+        .doc(id)
+        .update({'status': status, 'date': date, 'price': price});
   }
 
   Future deleteSubject(String id) async {

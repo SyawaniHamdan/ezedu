@@ -2,7 +2,9 @@ import 'package:ezedu/models/studentsubject.dart';
 import 'package:ezedu/models/subject.dart';
 import 'package:ezedu/models/tutor.dart';
 import 'package:ezedu/screens/student/payment/student_payment_viewmodel.dart';
+import 'package:ezedu/screens/student/tab/student_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
 class StudentPaymentBody extends StatefulWidget {
@@ -20,75 +22,119 @@ class _StudentPaymentBody extends State<StudentPaymentBody> {
         viewModelBuilder: () => StudentPaymentViewModel(),
         onModelReady: (model) => model.initialise(),
         builder: (context, model, child) => model.isBusy
-            ? Center(child: CircularProgressIndicator())
-            : Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Total Outstanding\nRM " +
-                            model.totalBills.toStringAsFixed(2),
-                        style: const TextStyle(
-                            color: Colors.red,
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(
-                            left: 0, top: 100, right: 0, bottom: 100),
-                      )
+            ? const Center(child: CircularProgressIndicator())
+            : model.empty
+                ? Column(
+                    children: const [
+                      Expanded(
+                          child: Center(child: Text('No Subject Need To Pay'))),
                     ],
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: model.studentsubjectList.length,
-                        itemBuilder: (context, index) {
-                          StudentSubject studentSubject =
-                              model.studentsubjectList[index];
+                  )
+                : Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Total Outstanding\nRM " +
+                                model.totalBills.toStringAsFixed(2),
+                            style: const TextStyle(
+                                color: Colors.red,
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                                left: 0, top: 100, right: 0, bottom: 100),
+                          )
+                        ],
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                            itemCount: model.studentsubjectList.length,
+                            itemBuilder: (context, index) {
+                              StudentSubject studentSubject =
+                                  model.studentsubjectList[index];
 
-                          Subject subject =
-                              model.getSubject(studentSubject.subjectId);
-                          //Tutor tutor =
-                           //   model.getTutor(subject.tutorId);
+                              Subject subject =
+                                  model.getSubject(studentSubject.subjectId);
+                              Tutor tutor = model.getTutor(subject.tutorId);
+                              String buttonTxt = model
+                                  .getPaymentSubject(subject.id!)
+                                  .toUpperCase();
 
-                          return Container(
-                            //height: 50,
-                            width: MediaQuery.of(context).size.width - 100,
-                            padding:
-                                EdgeInsets.only(left: padding, right: padding),
-                            child: Card(
-                              child: ListTile(
-                                title: Text(subject.subjectName),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('nama tutor'), // tutor and subject takda connection lagi
-                                    Text(
-                                      "\nOutstanding: RM" +
-                                          subject.subjectPrice.toStringAsFixed(2),
-                                      style: const TextStyle(
-                                          color: Colors.red,
-                                          fontWeight: FontWeight.bold),
+                              String cdate = DateFormat("dd-MM-yyyy")
+                                  .format(DateTime.now());
+
+                              Color primaryColor = Colors.blue;
+
+                              if (buttonTxt == "COMPLETE") {
+                                primaryColor = Colors.green;
+                              }
+
+                              return Container(
+                                //height: 50,
+                                width: MediaQuery.of(context).size.width - 100,
+                                padding: EdgeInsets.only(
+                                    left: padding, right: padding),
+                                child: Card(
+                                  child: ListTile(
+                                    title: Text(subject.subjectName),
+                                    subtitle: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(tutor.name),
+                                        Text(subject.subjectDate),
+                                        Text(subject
+                                            .subjectSlot), // tutor and subject takda connection lagi
+                                        Text(
+                                          "\nOutstanding: RM" +
+                                              subject.subjectPrice
+                                                  .toStringAsFixed(2),
+                                          style: const TextStyle(
+                                              color: Colors.red,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
-                                    //Text(subtitle[index]),
-                                  ],
+                                    trailing: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: primaryColor),
+                                            onPressed: () async {
+                                              if (buttonTxt == "APPROVE") {
+                                                model.studentPayment(
+                                                    id: studentSubject.id!,
+                                                    status: "complete",
+                                                    date: cdate,
+                                                    price:
+                                                        subject.subjectPrice);
+
+                                                await Future.delayed(
+                                                    const Duration(seconds: 1));
+
+                                                Navigator.of(context,
+                                                        rootNavigator: true)
+                                                    .pushAndRemoveUntil(
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                StudentTab()),
+                                                        (route) => false);
+                                              }
+                                            },
+                                            child: Text("PAY"))
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ElevatedButton(
-                                        onPressed: () {},
-                                        child: const Text("Pay"))
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
-                ],
-              ));
+                              );
+                            }),
+                      ),
+                    ],
+                  ));
   }
 }
