@@ -52,6 +52,6 @@ class StudentNotesViewModel extends ViewModel {
 
   Subject getSubject(String subjectId) =>
       subjectList.firstWhere((subject) => subject.id == subjectId);
-  //Tutor getTutor(String tutorId) =>
-  //    tutorList.firstWhere((tutor) => tutor.id == tutorId);
+  Tutor getTutor(String tutorId) =>
+      tutorList.firstWhere((tutor) => tutor.id == tutorId);
 }

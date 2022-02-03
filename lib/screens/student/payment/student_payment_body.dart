@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:ezedu/models/studentsubject.dart';
 import 'package:ezedu/models/subject.dart';
 import 'package:ezedu/models/tutor.dart';
@@ -125,8 +127,26 @@ class _StudentPaymentBody extends State<StudentPaymentBody> {
                                                                 StudentTab()),
                                                         (route) => false);
                                               }
+                                              return showDialog(
+                                                  context: context,
+                                                  builder: (ctx) => AlertDialog(
+                                                        title: const Text(
+                                                            "Alert!"),
+                                                        content: const Text(
+                                                            "Payment successful!"),
+                                                        actions: <Widget>[
+                                                          FlatButton(
+                                                            onPressed: () {
+                                                              Navigator.of(ctx)
+                                                                  .pop();
+                                                            },
+                                                            child: const Text(
+                                                                "Ok"),
+                                                          ),
+                                                        ],
+                                                      ));
                                             },
-                                            child: Text("PAY"))
+                                            child: const Text("PAY"))
                                       ],
                                     ),
                                   ),

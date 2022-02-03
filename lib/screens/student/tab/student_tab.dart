@@ -1,6 +1,4 @@
 import 'package:ezedu/models/student.dart';
-import 'package:ezedu/screens/student/chat/student_chat_main_screen.dart';
-import 'package:ezedu/screens/student/classes/student_classes_main_screen.dart';
 import 'package:ezedu/screens/student/home/student_home_main_screen.dart';
 import 'package:ezedu/screens/student/notes/student_notes_main_screen.dart';
 import 'package:ezedu/screens/student/payment/student_payment_main_screen.dart';
@@ -94,7 +92,6 @@ class _StudentTab extends State<StudentTab> {
 
                   Tab(icon: Icon(Icons.view_list)),
                   Tab(icon: Icon(Icons.note)),
-                  //Tab(icon: Icon(Icons.class_)),
                   Tab(icon: Icon(Icons.payments)),
                 ],
               ),
@@ -105,7 +102,6 @@ class _StudentTab extends State<StudentTab> {
                 //CALL THE CALSS FROM ANOTHER SCRIPT TO DISPLAY STUFF
                 StudentHomeMainScreen(), //refet to this script to edit
                 StudentNotesMainScreen(),
-                //StudentClassesMainScreen(),
                 StudentPaymentMainScreen(),
               ],
             ),
