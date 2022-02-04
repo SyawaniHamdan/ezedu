@@ -197,7 +197,7 @@ class _TutorProfileBodyState extends State<TutorProfileBody> {
                             onPressed: () {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                      builder: (context) => tutorMainMenu()));
+                                      builder: (context) => tutorMainMenu(1)));
                             },
                             style: OutlinedButton.styleFrom(
                                 padding:
@@ -231,7 +231,8 @@ class _TutorProfileBodyState extends State<TutorProfileBody> {
 
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
-                                        builder: (context) => tutorMainMenu()));
+                                        builder: (context) =>
+                                            tutorMainMenu(1)));
                               },
                               style: ElevatedButton.styleFrom(
                                 padding:

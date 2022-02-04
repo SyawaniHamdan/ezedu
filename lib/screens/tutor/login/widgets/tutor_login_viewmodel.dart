@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 class TutorLoginViewModel extends ViewModel {
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
-  
-  Future login ({
-    String email ='',
+
+  Future login({
+    String email = '',
     String password = '',
     context,
   }) async {
@@ -33,7 +33,7 @@ class TutorLoginViewModel extends ViewModel {
         await Future.delayed(const Duration(seconds: 1));
         print("Login Success!");
         await Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const tutorMainMenu()));
+            MaterialPageRoute(builder: (context) => tutorMainMenu(0)));
       } else {
         print("Login Failed!");
         awesomeSingleDialog(
@@ -47,6 +47,6 @@ class TutorLoginViewModel extends ViewModel {
 
   void navigateToRegister(context) {
     Navigator.of(context, rootNavigator: true).pushReplacement(
-              MaterialPageRoute(builder: (context) => TutorRegistration()));
+        MaterialPageRoute(builder: (context) => TutorRegistration()));
   }
 }

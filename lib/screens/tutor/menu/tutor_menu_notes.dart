@@ -169,14 +169,15 @@ class _tutorNote extends State<tutorNote> {
                                                 );
 
                                                 await Future.delayed(
-                                                    Duration(seconds: 2));
+                                                    Duration(seconds: 1));
 
                                                 Navigator.of(context,
                                                         rootNavigator: true)
                                                     .pushAndRemoveUntil(
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                tutorMainMenu()),
+                                                                tutorMainMenu(
+                                                                    1)),
                                                         (route) => false);
                                               },
                                               child: const Text("Add")),
@@ -325,14 +326,14 @@ class _tutorNote extends State<tutorNote> {
                                         );
 
                                         await Future.delayed(
-                                            Duration(seconds: 2));
+                                            Duration(seconds: 1));
 
                                         Navigator.of(context,
                                                 rootNavigator: true)
                                             .pushAndRemoveUntil(
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        tutorMainMenu()),
+                                                        tutorMainMenu(1)),
                                                 (route) => false);
                                       },
                                       color: Color.fromARGB(255, 255, 8, 8),

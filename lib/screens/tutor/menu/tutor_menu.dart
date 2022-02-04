@@ -12,7 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class tutorMainMenu extends StatefulWidget {
-  const tutorMainMenu({Key? key}) : super(key: key);
+  //const tutorMainMenu({Key? key}) : super(key: key);
+  int selectedPage;
+  tutorMainMenu(this.selectedPage, {Key? key}) : super(key: key);
 
   // static const rightColor = Color(0xFF36d1dc);
   //static const leftColor = Color(0xFF5b86e5);
@@ -26,6 +28,7 @@ class tutorMainMenu extends StatefulWidget {
 class _tutorMainMenuState extends State<tutorMainMenu> {
   //INDICATOR COLOR
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<TutorMenuViewModel>.reactive(
@@ -35,6 +38,7 @@ class _tutorMainMenuState extends State<tutorMainMenu> {
         builder: (context, model, child) => MaterialApp(
               debugShowCheckedModeBanner: false,
               home: DefaultTabController(
+                initialIndex: widget.selectedPage,
                 length: 4,
                 child: Scaffold(
                   appBar: AppBar(
