@@ -243,7 +243,7 @@ class _tutorFeed extends State<tutorFeed> {
                                                   .pushAndRemoveUntil(
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              tutorMainMenu()),
+                                                              tutorMainMenu(0)),
                                                       (route) => false);
                                             },
                                             child: const Text("Add"))),
@@ -394,7 +394,7 @@ class _tutorFeed extends State<tutorFeed> {
                                           .pushAndRemoveUntil(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      tutorMainMenu()),
+                                                      tutorMainMenu(0)),
                                               (route) => false);
                                     },
                                   ),

@@ -20,7 +20,7 @@ class Routes {
       case '/tutor_login':
         return MaterialPageRoute(builder: (context) => TutorLoginView());
       case '/tutor_home':
-        return MaterialPageRoute(builder: (context) => const tutorMainMenu());
+        return MaterialPageRoute(builder: (context) => tutorMainMenu(0));
 
       //Navigation for STUDENTS==============================================================
       case '/student':

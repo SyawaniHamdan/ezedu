@@ -36,7 +36,7 @@ class _tutorStudentList extends State<tutorStudentList> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const tutorMainMenu(),
+                                builder: (context) => tutorMainMenu(2),
                               ),
                             );
                           },
@@ -84,40 +84,46 @@ class _tutorStudentList extends State<tutorStudentList> {
                                     left: padding, right: padding),
                                 child: Card(
                                   child: ListTile(
-                                    title: Text(model
-                                        .getStudent(studentSubject.studentId)
-                                        .name,
-                                        style: const TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 15.0,
-                                                        fontWeight:
-                                                            FontWeight.w600),),
-                                        subtitle: Container(
-                                              padding: const EdgeInsets.only(
-                                                  top: 4.0, bottom: 4.0),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(model.getStudent(studentSubject.studentId).level,
-                                                    style: const TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 13.5,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                                  Text(
-                                                    model.getStudent(studentSubject.studentId).phone,
-                                                    style: const TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 13.5,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                                  const SizedBox(height: 8.5),
-                                                ],
-                                              ),
-                                            ),
+                                    title: Text(
+                                      model
+                                          .getStudent(studentSubject.studentId)
+                                          .name,
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    subtitle: Container(
+                                      padding: const EdgeInsets.only(
+                                          top: 4.0, bottom: 4.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            model
+                                                .getStudent(
+                                                    studentSubject.studentId)
+                                                .level,
+                                            style: const TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 13.5,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          Text(
+                                            model
+                                                .getStudent(
+                                                    studentSubject.studentId)
+                                                .phone,
+                                            style: const TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 13.5,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          const SizedBox(height: 8.5),
+                                        ],
+                                      ),
+                                    ),
                                     trailing: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: (studentSubject.status
@@ -136,19 +142,21 @@ class _tutorStudentList extends State<tutorStudentList> {
                                                       );
 
                                                       await Future.delayed(
-                                                          const Duration(seconds: 1));
+                                                          const Duration(
+                                                              seconds: 1));
 
                                                       Navigator.of(context,
                                                               rootNavigator:
                                                                   true)
                                                           .pushAndRemoveUntil(
                                                               MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          const tutorMainMenu()),
+                                                                  builder: (context) =>
+                                                                      tutorMainMenu(
+                                                                          2)),
                                                               (route) => false);
                                                     },
-                                                    child:const Icon(Icons.check)),
+                                                    child: const Icon(
+                                                        Icons.check)),
                                                 const SizedBox(
                                                   width: 10.0,
                                                 ),
@@ -164,16 +172,17 @@ class _tutorStudentList extends State<tutorStudentList> {
                                                       );
 
                                                       await Future.delayed(
-                                                          const Duration(seconds: 1));
+                                                          const Duration(
+                                                              seconds: 1));
 
                                                       Navigator.of(context,
                                                               rootNavigator:
                                                                   true)
                                                           .pushAndRemoveUntil(
                                                               MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                        const tutorMainMenu()),
+                                                                  builder: (context) =>
+                                                                      tutorMainMenu(
+                                                                          2)),
                                                               (route) => false);
                                                     },
                                                     child: const Icon(

@@ -157,7 +157,8 @@ class _tutorNoteUpdate extends State<tutorNoteUpdate> {
                                                     .pushAndRemoveUntil(
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                tutorMainMenu()),
+                                                                tutorMainMenu(
+                                                                    1)),
                                                         (route) => false);
                                               },
                                               child: const Text("Update")),
