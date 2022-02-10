@@ -1,6 +1,12 @@
 # ezedu
 
-A new Flutter project.
+This project is made for Mobile Application Programming. EzEdu is a project that is currently worked by Nur Syawani, Muhammad Amin, Julia
+Jasmin and Siti Fatimah. EzEdu is open to the public, therefore anyone can download the
+application. This application's main audience is tutors and SPM & PT3 students. Since it is fully
+online, EzEdu is available anywhere as long as the user has downloaded the application into their
+Android smartphone. EzEdu helps connect thousands of highly qualified tutors with students
+across the globe. Its mission is to maximize study efficiency with personalized learning
+experiences for teachers and students.
 
 ## Getting Started
 
