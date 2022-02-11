@@ -8,7 +8,7 @@ Android smartphone. EzEdu helps connect thousands of highly qualified tutors wit
 across the globe. Its mission is to maximize study efficiency with personalized learning
 experiences for teachers and students.
 
-[![IMAGE ALT TEXT HERE](https://th.bing.com/th/id/R.f7eb8ef4ae6e16911184073c39286f95?rik=9KXtMKrH199Gkg&riu=http%3a%2f%2fpngimg.com%2fuploads%2fyoutube%2fyoutube_PNG15.png&ehk=sD%2bRn%2ff1F0Eu5VHYQYfg7UotTt%2blz3MFtm8%2bkXmSzpc%3d&risl=&pid=ImgRaw&r=0)](https://www.youtube.com/watch?v=WVks3sauZMk)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=WVks3sauZMk)
 
 
 ## Getting Started
